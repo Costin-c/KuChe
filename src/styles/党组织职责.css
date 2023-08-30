@@ -1,0 +1,140 @@
+﻿.form_sketch {
+  border-color: transparent;
+  background-color: transparent;
+}
+#base {
+  position: relative;
+  width: 1109px;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 1;
+}
+
+#u78 {
+  position: absolute;
+  left: 0px;
+  top: 980px;
+  width: 1109px;
+  height: 57px;
+  display: flex;
+}
+
+#u80 {
+  border-width: 0px;
+  position: absolute;
+  left: 25px;
+  top: 850px;
+  width: 280px;
+  height: 49px;
+  display: flex;
+  font-family: "Arial Negreta", "Arial Normal", "Arial", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 18px;
+  color: #7f7f7f;
+}
+#u80 .text {
+  position: absolute;
+  align-self: flex-start;
+  padding: 0px 0px 0px 0px;
+  box-sizing: border-box;
+  width: 100%;
+}
+#u80_text {
+  border-width: 0px;
+  word-wrap: break-word;
+  text-transform: none;
+}
+#u81_img {
+  border-width: 0px;
+  position: absolute;
+  width: 1109px;
+  height: 7px;
+}
+#u81 {
+  border-width: 0px;
+  position: absolute;
+  left: 0px;
+  top: 116px;
+  width: 1109px;
+  height: 3px;
+  display: flex;
+  -webkit-transform: rotate(-0.172009240975219deg);
+  -moz-transform: rotate(-0.172009240975219deg);
+  -ms-transform: rotate(-0.172009240975219deg);
+  transform: rotate(-0.172009240975219deg);
+}
+
+#u82_img {
+  border-width: 0px;
+  position: absolute;
+  left: -2px;
+  top: -2px;
+  width: 1105px;
+  height: 7px;
+}
+#u82 {
+  border-width: 0px;
+  position: absolute;
+  left: 0px;
+  top: 800px;
+  width: 1101px;
+  height: 3px;
+  display: flex;
+  -webkit-transform: rotate(-0.172009240975219deg);
+  -moz-transform: rotate(-0.172009240975219deg);
+  -ms-transform: rotate(-0.172009240975219deg);
+  transform: rotate(-0.172009240975219deg);
+}
+
+#u83 {
+  border-width: 0px;
+  position: absolute;
+  left: 254px;
+  top: 850px;
+  width: 280px;
+  height: 49px;
+  display: flex;
+  font-family: "Arial Negreta", "Arial Normal", "Arial", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 18px;
+  color: #7f7f7f;
+}
+#u83 .text {
+  position: absolute;
+  align-self: flex-start;
+  padding: 0px 0px 0px 0px;
+  box-sizing: border-box;
+  width: 100%;
+}
+#u83_text {
+  border-width: 0px;
+  word-wrap: break-word;
+  text-transform: none;
+}
+
+#u84 {
+  position: absolute;
+  top: 149px;
+  width: 1109px;
+  /* height: 49px; */
+  display: flex;
+  font-family: "Arial Negreta", "Arial Normal", "Arial", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 18px;
+  color: #7f7f7f;
+}
+#u84 .text {
+  position: absolute;
+  align-self: flex-start;
+  padding: 0px 0px 0px 0px;
+  box-sizing: border-box;
+  width: 100%;
+}
+#u84_text {
+  border-width: 0px;
+  word-wrap: break-word;
+  text-transform: none;
+}
