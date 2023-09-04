@@ -61,12 +61,15 @@ export default {
 
 <style lang="less" scoped>
 .home_tab {
-  width: 1109px;
+  width: 100%;
   display: flex;
   align-content: center;
   justify-content: center;
   .el-menu--horizontal > .el-menu-item {
-    width: 278px;
+    width: 25%;
+  }
+  ul{
+    width: 100%;
   }
   // .el-menu--popup-bottom-start {
   //   margin-top: 1px;

@@ -2,7 +2,7 @@
   <div class="header_wapper">
     <div class="header_con">
       <div class="header_text">
-        <p><span>{{ text }}</span></p>
+        <p><span><h2>{{ text }}</h2></span></p>
       </div>
     </div>
   </div>
@@ -26,8 +26,8 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 1109px;
-  height: 96px;
+  width: 100%;
+  height: 255px;
   overflow: hidden;
   background-color: #c41909;
   .header_text {

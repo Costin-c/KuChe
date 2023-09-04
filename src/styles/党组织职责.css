@@ -4,7 +4,7 @@
 }
 #base {
   position: relative;
-  width: 1109px;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
   z-index: 1;
@@ -13,8 +13,8 @@
 #u78 {
   position: absolute;
   left: 0px;
-  top: 980px;
-  width: 1109px;
+  top: 1200px;
+  width: 100%;
   height: 57px;
   display: flex;
 }
@@ -22,8 +22,8 @@
 #u80 {
   border-width: 0px;
   position: absolute;
-  left: 25px;
-  top: 850px;
+  left: 288px;
+  top: 1050px;
   width: 280px;
   height: 49px;
   display: flex;
@@ -54,8 +54,9 @@
 #u81 {
   border-width: 0px;
   position: absolute;
-  left: 0px;
-  top: 116px;
+  left: 50%;
+  top: 316px;
+  margin-left: -550px;
   width: 1109px;
   height: 3px;
   display: flex;
@@ -76,8 +77,9 @@
 #u82 {
   border-width: 0px;
   position: absolute;
-  left: 0px;
-  top: 800px;
+  left: 50%;
+  margin-left: -550px;
+  top: 1000px;
   width: 1101px;
   height: 3px;
   display: flex;
@@ -90,8 +92,8 @@
 #u83 {
   border-width: 0px;
   position: absolute;
-  left: 254px;
-  top: 850px;
+  left: 550px;
+  top: 1050px;
   width: 280px;
   height: 49px;
   display: flex;
@@ -116,7 +118,9 @@
 
 #u84 {
   position: absolute;
-  top: 149px;
+  left: 50%;
+  margin-left: -550px;
+  top: 349px;
   width: 1109px;
   /* height: 49px; */
   display: flex;

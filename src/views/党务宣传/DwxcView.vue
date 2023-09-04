@@ -82,10 +82,15 @@
     <!-- Unnamed (矩形) -->
     <div id="u125" class="ax_default _一级标题">
       <!-- <div id="u125_div" class=""></div> -->
-      <div id="u125_text" class="text">
+      <div
+        id="u125_text"
+        class="text"
+        v-for="items in dwxcArr"
+        :key="items.index"
+      >
         <p>
-          <span class="con_left">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span>
-          <span class="con_right">2023-06-01</span>
+          <span class="con_left">{{ items.dwxcTitle }}</span>
+          <span class="con_right">{{ items.createTime.slice(0, 10) }}</span>
         </p>
       </div>
     </div>
@@ -129,6 +134,7 @@
 
 
 <script>
+import axios from "axios";
 import DetailPage from "../../components/DetailPage.vue";
 import HeaderTab from "@/components/HeaderTab.vue";
 import FooterTab from "../../components/FooterTab.vue";
@@ -140,7 +146,31 @@ export default {
     FooterTab,
   },
   data() {
-    return {};
+    return {
+      dwxcArr: [],
+    };
+  },
+  beforeMount() {
+    this.getData();
+    // this.handleArr();
+  },
+  methods: {
+    async getData() {
+      await axios
+        .get("http://www.tsllhf.cn:8078/news/webrequest/dwxclist")
+        .then((res) => {
+          this.dwxcArr = res.data.rows;
+          console.log(this.dwxcArr);
+        });
+    },
+    // handleArr() {
+    //   for (var i = 0; i < this.dwxcArr.length; i++) {
+    //     this.dwxcTitle = this.dwxcArr[i].dwxcTitle;
+    //     this.dwxcTime = this.dwxcArr[i].createTime.slice(0, 10);
+    //     this.dwxcContent = this.dwxcArr[i].dwxcContent;
+    //   }
+    //   console.log(this.dwxcArr[0].createTime);
+    // },
   },
 };
 </script>

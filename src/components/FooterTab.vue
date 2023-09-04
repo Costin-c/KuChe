@@ -32,7 +32,7 @@ export default {};
 .footer_wapper{
   position: relative;
   overflow: hidden;
-  width: 1109px;
+  width: 100%;
 }
 .footer_bg {
   position: absolute;
@@ -46,7 +46,7 @@ export default {};
   position: absolute;
   left: 0px;
   top: 0px;
-  width: 1109px;
+  width: 100%;
   height: 57px;
   background-color: #f1f1f1;
   display: flex;

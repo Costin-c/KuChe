@@ -32,7 +32,7 @@ export default {
 }
 #base {
   position: relative;
-  width: 1109px;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
   z-index: 1;
@@ -49,8 +49,9 @@ export default {
 #u53 {
   border-width: 0px;
   position: absolute;
-  left: 0px;
-  top: 96px;
+  left: 50%;
+  top: 266px;
+  margin-left: -550px;
   width: 1101px;
   height: 621px;
   display: flex;
@@ -61,7 +62,7 @@ export default {
   position: absolute;
   left: 0px;
   top: 900px;
-  width: 1101px;
+  width: 100%;
   height: 57px;
   display: flex;
 }

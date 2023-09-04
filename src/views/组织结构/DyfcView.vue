@@ -19,37 +19,37 @@
     </div>
 
     <!-- Unnamed (文本框) -->
-    <div id="u60" class="ax_default text_field">
+    <!-- <div id="u60" class="ax_default text_field">
       <div id="u60_div" class="">党务学习情况</div>
-      <!-- <input
+      <input
         id="u60_input"
         type="text"
         value="党务学习情况"
         class="u60_input"
-      /> -->
-    </div>
+      />
+    </div> -->
 
     <!-- Unnamed (文本框) -->
-    <div id="u61" class="ax_default text_field">
+    <!-- <div id="u61" class="ax_default text_field">
       <div id="u61_div" class="">惠访聚情况</div>
-      <!-- <input id="u61_input" type="text" value="惠访聚情况" class="u61_input" /> -->
-    </div>
+      <input id="u61_input" type="text" value="惠访聚情况" class="u61_input" />
+    </div> -->
 
     <!-- Unnamed (矩形) -->
-    <div id="u62" class="ax_default text_field">
+    <!-- <div id="u62" class="ax_default text_field">
       <div id="u62_div" class=""></div>
       <div id="u62_text" class="text">
         <p><span>更多&gt;&gt;</span></p>
       </div>
-    </div>
+    </div> -->
 
     <!-- Unnamed (矩形) -->
-    <div id="u63" class="ax_default text_field">
+    <!-- <div id="u63" class="ax_default text_field">
       <div id="u63_div" class=""></div>
       <div id="u63_text" class="text">
         <p><span>更多&gt;&gt;</span></p>
       </div>
-    </div>
+    </div> -->
 
     <!-- Unnamed (矩形) -->
     <div id="u64" class="ax_default box_1">
@@ -64,7 +64,7 @@
       <div id="u66_div" class="">
         <div id="u65_text" class="text">
           <p>
-            <span>党员姓名</span>
+            <span>李四</span>
           </p>
         </div>
       </div>
@@ -78,7 +78,7 @@
       <div id="u66_div" class="">
         <div id="u66_text" class="text">
           <p>
-            <span>党员姓名</span>
+            <span>张三</span>
           </p>
         </div>
       </div>
@@ -127,14 +127,14 @@
       <div id="u66_div" class="">
         <div id="u70_text" class="text">
           <p>
-            <span>党员姓名</span>
+            <span>王五</span>
           </p>
         </div>
       </div>
     </div>
 
     <!-- Unnamed (形状) -->
-    <div id="u71" class="ax_default box_1">
+    <!-- <div id="u71" class="ax_default box_1">
       <div id="u66_div" class="">
         <div id="u71_text" class="text">
           <p>
@@ -142,14 +142,14 @@
           </p>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <!-- Unnamed (形状) -->
     <div id="u72" class="ax_default box_1">
       <div id="u66_div" class="">
         <div id="u72_text" class="text">
           <p>
-            <span>党员姓名</span>
+            <span>赵六</span>
           </p>
         </div>
       </div>

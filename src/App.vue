@@ -11,7 +11,7 @@
       <router-link to="/khrwxf">考核任务下发</router-link> |
       <router-link to="/text">测试组件</router-link> |
     </nav>
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
@@ -23,9 +23,9 @@
   text-align: center;
   color: #2c3e50;
   position: relative;
-  width:1109px; 
-  margin-left:auto; 
-  margin-right:auto; 
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 nav {

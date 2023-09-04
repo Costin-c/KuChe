@@ -318,6 +318,19 @@ export default {
           title: "abc",
           date: "2023-05-08",
         },
+        {
+          title: "abc",
+          date: "2023-05-08",
+        },
+        {
+          title: "abc",
+          date: "2023-05-08",
+        },
+        {
+          title: "abc",
+          date: "2023-05-08",
+        },
+        
       ],
     };
   },
@@ -351,13 +364,13 @@ export default {
 .tab {
 }
 #u0 .carousel {
-  width: 50%;
+  width: 45%;
   margin-top: 50px;
 }
 .jobList {
   margin-top: 50px;
   font-size: 15px;
-  width: 50%;
+  width: 45%;
   position: relative;
   overflow: hidden;
   ul {
@@ -368,12 +381,6 @@ export default {
       justify-content: space-between;
       list-style: circle;
     }
-  }
-  .left {
-    // float: left;
-  }
-  .right {
-    // float: right;
   }
 }
 </style>
