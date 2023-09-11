@@ -68,7 +68,7 @@ export default {
   .el-menu--horizontal > .el-menu-item {
     width: 25%;
   }
-  ul{
+  ul {
     width: 100%;
   }
   // .el-menu--popup-bottom-start {

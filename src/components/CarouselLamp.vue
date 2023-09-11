@@ -7,6 +7,19 @@
     </el-carousel>
   </div>
 </template>
+
+<script>
+export default {
+  data(){
+    return {
+      imgArr: [
+        ""
+      ]
+    }
+  }
+}
+</script>
+
   
 <style lang="less" scoped>
 .block{

@@ -3,6 +3,20 @@
     <!-- 页头 -->
     <HeaderTab text="学籍统计"></HeaderTab>
 
+    <HomeTabNew></HomeTabNew>
+
+    <div class="breadCrumb">
+      <div class="title">
+        <span>您当前所在的位置：</span>
+      </div>
+      <div class="tool">
+        <el-breadcrumb separator="/">
+          <el-breadcrumb-item style="cu"><router-link to="/">首页</router-link></el-breadcrumb-item>
+          <el-breadcrumb-item><router-link to="/xjtj">学籍统计</router-link></el-breadcrumb-item>
+        </el-breadcrumb>
+      </div>
+    </div>
+
     <!-- 表格区域 -->
     <div id="u88" class="ax_default box_1">
       <div class="tableCon">
@@ -12,6 +26,10 @@
       <div class="Paging">
         <PageNation></PageNation>
       </div>
+    </div>
+
+    <div class="top">
+      <DjBg></DjBg>
     </div>
 
     <!-- 页尾 -->
@@ -26,12 +44,17 @@ import HeaderTab from "@/components/HeaderTab.vue";
 import FooterTab from "@/components/FooterTab.vue";
 import TableTool from "@/components/TableTool.vue";
 import PageNation from "@/components/PageNation.vue";
+import HomeTabNew from "@/components/HomeTabNew.vue";
+import DjBg from "@/components/DjBg.vue";
+
 export default {
   components: {
     HeaderTab,
     FooterTab,
     TableTool,
     PageNation,
+    HomeTabNew,
+    DjBg
   },
   methods: {
     handleOpen(key, keyPath) {
@@ -46,4 +69,24 @@ export default {
 
 <style lang="less" scoped>
 @import url("~@/styles/学籍统计.css");
+
+.top {
+  position: absolute;
+  width: 100%;
+  top: 948px;
+}
+.breadCrumb {
+  // width: 100%;
+  position: relative;
+  padding-left: 233px;
+  padding-top: 15px;
+  overflow: hidden;
+  z-index: 99;
+  .title {
+    float: left;
+  }
+  .tool{
+    margin-top: 4px;
+  }
+}
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <nav>
+    <!-- <nav>
       <router-link to="/">首页</router-link> |
       <router-link to="/dwxc">党务宣传</router-link> |
       <router-link to="/dyxx">党员学习</router-link> |
@@ -10,7 +10,7 @@
       <router-link to="/xjtj">学籍统计</router-link> |
       <router-link to="/khrwxf">考核任务下发</router-link> |
       <router-link to="/text">测试组件</router-link> |
-    </nav>
+    </nav> -->
     <router-view />
   </div>
 </template>

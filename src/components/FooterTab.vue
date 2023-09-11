@@ -15,9 +15,9 @@
       </div>
       <div class="f_right">
         <ul class="right_ui">
-          <li><a href="">共产党员网</a></li>
-          <li><a href="">版权所有</a></li>
-          <li><a href="">京ICP备12024993号-1</a></li>
+          <li><a href="">主管单位：中共库车市委员会组织部</a></li>
+          <!-- <li><a href="">版权所有</a></li> -->
+          <li><a href="">京ICP备12024999号-1</a></li>
         </ul>
       </div>
     </div>

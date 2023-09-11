@@ -9,6 +9,17 @@
 
     <PageNation></PageNation>
 
+    <DjBg></DjBg>
+
+    <HomeTabNew></HomeTabNew>
+
+    <BreadCrumb></BreadCrumb>
+
+    <ListTab></ListTab>
+
+    <newsList></newsList>
+
+    <ChartsBlock></ChartsBlock>
     <!-- <el-row>
       <el-col :span="24">
         <div class="grid-content bg-purple-dark"></div>
@@ -22,13 +33,25 @@
 // import DataUp from "@/components/DataUp.vue";
 import HomeTab from "@/components/HomeTab.vue";
 import PageNation from "@/components/PageNation.vue";
+import DjBg from "@/components/DjBg.vue";
+import HomeTabNew from "@/components/HomeTabNew.vue";
+import BreadCrumb from "@/components/BreadCrumb.vue";
+import ListTab from "@/components/ListTab.vue";
+import newsList from '@/components/newsList.vue'
+import ChartsBlock from "@/components/ChartsBlock.vue";
 
 export default {
   components: {
     // StatusStatistics,
     // DataUp,
     HomeTab,
-    PageNation
+    PageNation,
+    DjBg,
+    HomeTabNew,
+    BreadCrumb,
+    ListTab,
+    newsList,
+    ChartsBlock
   },
   methods: {
     handleOpen(key, keyPath) {

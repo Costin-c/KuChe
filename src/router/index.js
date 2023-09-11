@@ -74,6 +74,11 @@ const routes = [
     name: 'khrwxf',
     component: () => import('../views/党组织考核管理/KhrwxfView.vue')
   },
+  {
+    path: '/khtjbb',
+    name: 'khtjbb',
+    component: () => import('../views/党组织考核管理/KhtjbbView.vue')
+  },
 ]
 
 const router = new VueRouter({

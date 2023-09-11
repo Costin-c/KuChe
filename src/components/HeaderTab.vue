@@ -29,7 +29,9 @@ export default {
   width: 100%;
   height: 255px;
   overflow: hidden;
-  background-color: #c41909;
+  // background-color: #c41909;
+  background-image: url(~@/assets/images/首页/bg4.jpg);
+  background-size: 100%;
   .header_text {
     position: absolute;
     font-family: "Arial Negreta", "Arial Normal", "Arial", sans-serif;

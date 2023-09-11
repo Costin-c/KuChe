@@ -13,7 +13,7 @@
 #u78 {
   position: absolute;
   left: 0px;
-  top: 1200px;
+  top: 1800px;
   width: 100%;
   height: 57px;
   display: flex;
@@ -23,7 +23,7 @@
   border-width: 0px;
   position: absolute;
   left: 288px;
-  top: 1050px;
+  top: 1650px;
   width: 280px;
   height: 49px;
   display: flex;
@@ -55,7 +55,7 @@
   border-width: 0px;
   position: absolute;
   left: 50%;
-  top: 316px;
+  top: 450px;
   margin-left: -550px;
   width: 1109px;
   height: 3px;
@@ -79,7 +79,7 @@
   position: absolute;
   left: 50%;
   margin-left: -550px;
-  top: 1000px;
+  top: 1620px;
   width: 1101px;
   height: 3px;
   display: flex;
@@ -93,7 +93,7 @@
   border-width: 0px;
   position: absolute;
   left: 550px;
-  top: 1050px;
+  top: 1650px;
   width: 280px;
   height: 49px;
   display: flex;
@@ -120,19 +120,22 @@
   position: absolute;
   left: 50%;
   margin-left: -550px;
-  top: 349px;
+  top: 485px;
   width: 1109px;
   /* height: 49px; */
   display: flex;
-  font-family: "Arial Negreta", "Arial Normal", "Arial", sans-serif;
-  font-weight: 700;
-  font-style: normal;
-  font-size: 18px;
-  color: #7f7f7f;
+  font: 18px "微软雅黑";
+  color: #292929;
+}
+#u84 p{
+  text-indent: 2em;
+  margin-bottom: 20px;
+  line-height: 30px;
 }
 #u84 .text {
   position: absolute;
   align-self: flex-start;
+  text-align: left;
   padding: 0px 0px 0px 0px;
   box-sizing: border-box;
   width: 100%;
@@ -141,4 +144,8 @@
   border-width: 0px;
   word-wrap: break-word;
   text-transform: none;
+}
+
+.bottom20{
+  margin-bottom: 20px;
 }

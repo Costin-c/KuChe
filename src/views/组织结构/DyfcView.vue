@@ -1,86 +1,58 @@
 <template>
   <div id="base" class="">
     <HeaderTab text="党员风采展示"></HeaderTab>
-    <!-- Unnamed (图片 ) -->
-    <div id="u56" class="ax_default _图片_">
-      <!-- <img
-        id="u56_img"
-        class="img"
-        src="@/assets/images/党员风采展示/u56.png"
-      /> -->
-      <div id="u56_text" class="text" style="display: none; visibility: hidden">
+
+    <HomeTabNew></HomeTabNew>
+
+    <div class="breadCrumb">
+      <div class="title">
+        <span>您当前所在的位置：</span>
+      </div>
+      <div class="tool">
+        <el-breadcrumb separator="/">
+          <el-breadcrumb-item style="cu"
+            ><router-link to="/">首页</router-link></el-breadcrumb-item
+          >
+          <el-breadcrumb-item
+            ><router-link to="/dyfc"
+              >党员风采展示</router-link
+            ></el-breadcrumb-item
+          >
+        </el-breadcrumb>
+      </div>
+    </div>
+
+    <div class="list_left">
+      <h3>党员</h3>
+      <div class="imgcenter">
+        <ul>
+          <li>
+            <router-link to="">刘军</router-link>
+          </li>
+
+          <li>
+            <router-link to="">李四</router-link>
+          </li>
+
+          <li>
+            <router-link to="">王五</router-link>
+          </li>
+
+          <li>
+            <router-link to="">赵六</router-link>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="u247" class="ax_default line">
+      <img id="u247_img" class="img" src="@/assets/images/党员学习/u247.svg" />
+      <div
+        id="u247_text"
+        class="text"
+        style="display: none; visibility: hidden"
+      >
         <p></p>
-      </div>
-    </div>
-
-    <!-- Unnamed (图片 ) -->
-    <div id="u58" class="ax_default _图片_">
-      <FooterTab></FooterTab>
-    </div>
-
-    <!-- Unnamed (文本框) -->
-    <!-- <div id="u60" class="ax_default text_field">
-      <div id="u60_div" class="">党务学习情况</div>
-      <input
-        id="u60_input"
-        type="text"
-        value="党务学习情况"
-        class="u60_input"
-      />
-    </div> -->
-
-    <!-- Unnamed (文本框) -->
-    <!-- <div id="u61" class="ax_default text_field">
-      <div id="u61_div" class="">惠访聚情况</div>
-      <input id="u61_input" type="text" value="惠访聚情况" class="u61_input" />
-    </div> -->
-
-    <!-- Unnamed (矩形) -->
-    <!-- <div id="u62" class="ax_default text_field">
-      <div id="u62_div" class=""></div>
-      <div id="u62_text" class="text">
-        <p><span>更多&gt;&gt;</span></p>
-      </div>
-    </div> -->
-
-    <!-- Unnamed (矩形) -->
-    <!-- <div id="u63" class="ax_default text_field">
-      <div id="u63_div" class=""></div>
-      <div id="u63_text" class="text">
-        <p><span>更多&gt;&gt;</span></p>
-      </div>
-    </div> -->
-
-    <!-- Unnamed (矩形) -->
-    <div id="u64" class="ax_default box_1">
-      <div id="u64_div" class=""></div>
-      <div id="u64_text" class="text">
-        <p><span>全体党员</span></p>
-      </div>
-    </div>
-
-    <!-- Unnamed (形状) -->
-    <div id="u65" class="ax_default box_1">
-      <div id="u66_div" class="">
-        <div id="u65_text" class="text">
-          <p>
-            <span>李四</span>
-          </p>
-        </div>
-      </div>
-    </div>
-
-      <!-- <ul>
-        <li v-for="name in nameArr" :key="name">{{ name }}</li>
-      </ul> -->
-    <!-- Unnamed (矩形) -->
-    <div id="u66" class="ax_default box_1">
-      <div id="u66_div" class="">
-        <div id="u66_text" class="text">
-          <p>
-            <span>张三</span>
-          </p>
-        </div>
       </div>
     </div>
 
@@ -89,7 +61,7 @@
       <img
         id="u67_img"
         class="img"
-        src="@/assets/images/党员风采展示/u67.png"
+        src="@/assets/images/党员风采展示/u68.jpg"
       />
       <div id="u67_text" class="text" style="display: none; visibility: hidden">
         <p></p>
@@ -97,83 +69,16 @@
     </div>
 
     <!-- Unnamed (文本框) -->
-    <div id="u68" class="ax_default text_field">
-      <div id="u68_div" class="">
-        党员姓名：{{ dyxm }}
-      </div>
-      <!-- <input
-        id="u68_input"
-        type="text"
-        value="党员姓名：张xx"
-        class="u68_input"
-      /> -->
-    </div>
+    <div id="u68" class="ax_default text_field">党员姓名：{{ dyxm }}</div>
 
     <!-- Unnamed (文本框) -->
-    <div id="u69" class="ax_default text_field">
-      <div id="u69_div" class="">
-        人生格言：{{ rsgy }}
-      </div>
-      <!-- <input
-        id="u69_input"
-        type="text"
-        value="人生格言：不忘初心，牢记使命"
-        class="u69_input"
-      /> -->
-    </div>
-
-    <!-- Unnamed (形状) -->
-    <div id="u70" class="ax_default box_1">
-      <div id="u66_div" class="">
-        <div id="u70_text" class="text">
-          <p>
-            <span>王五</span>
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Unnamed (形状) -->
-    <!-- <div id="u71" class="ax_default box_1">
-      <div id="u66_div" class="">
-        <div id="u71_text" class="text">
-          <p>
-            <span>党员姓名</span>
-          </p>
-        </div>
-      </div>
-    </div> -->
-
-    <!-- Unnamed (形状) -->
-    <div id="u72" class="ax_default box_1">
-      <div id="u66_div" class="">
-        <div id="u72_text" class="text">
-          <p>
-            <span>赵六</span>
-          </p>
-        </div>
-      </div>
-    </div>
+    <div id="u69" class="ax_default text_field">人生格言：{{ rsgy }}</div>
 
     <!-- Unnamed (文本框) -->
-    <div id="u73" class="ax_default text_field">
-      <div id="u73_div" class="">
-        负责职务：{{ fzzw }}
-      </div>
-      <!-- <input
-        id="u73_input"
-        type="text"
-        value="负责职务：书记xx"
-        class="u73_input"
-      /> -->
-    </div>
+    <div id="u73" class="ax_default text_field">负责职务：{{ fzzw }}</div>
 
     <!-- Unnamed (文本框) -->
-    <div id="u74" class="ax_default text_field">
-      <div id="u74_div" class="">领导简介</div>
-      <!-- <input id="u74_input" type="text" value="领导简介" class="u74_input" /> -->
-      <!-- <div class="u74_input">领导简介</div> -->
-    </div>
+    <div id="u74" class="ax_default text_field">领导简介</div>
 
     <!-- Unnamed (图片 ) -->
     <div id="u75" class="ax_default _图片_">
@@ -186,10 +91,44 @@
 
     <!-- Unnamed (矩形) -->
     <div id="u76" class="ax_default box_1">
-      <div id="u76_div" class=""></div>
-      <div id="u76_text" class="text">
-        <p><span>简介内容</span></p>
+      <div id="u76_div" class="">
+        <p>
+          <span> 1.主持公司全盘工作； </span>
+        </p>
+        <p>
+          <span>2.认真贯彻党和国家方针、政策，执行集团公司的各项决议；</span>
+        </p>
+        <p>
+          <span
+            >3.把握公司发展方向，制定公司整体发展战略规划，组织实施年度生产经营计划；</span
+          >
+        </p>
+        <p>
+          <span
+            >4.不定期主持召开支部会议和经理办公会议；根据权限和议事规则对“三重一大”进行民主决策；</span
+          >
+        </p>
+        <p>
+          <span
+            >5.紧紧围绕企业中心任务，认真做好职工思想政治工作，抓好党的建设和党员队伍建设，充分发挥党组织在企业发展中的政治核心作用、战斗堡垒作用和党员队伍的先锋模范作用；
+          </span>
+        </p>
+        <p>
+          <span
+            >6.进一步完善工作体系，定期开展安全生产检查等工作，针对存在的问题，及时采取措施整改，确保年度目标任务的完成；
+          </span>
+        </p>
+        <p><span>7.实现国有资产保值和增值，提高企业经济效益。 </span></p>
       </div>
+    </div>
+
+    <div class="top">
+      <DjBg></DjBg>
+    </div>
+
+    <!-- Unnamed (图片 ) -->
+    <div id="u58" class="ax_default _图片_">
+      <FooterTab></FooterTab>
     </div>
   </div>
 </template>
@@ -197,17 +136,22 @@
 <script>
 import HeaderTab from "@/components/HeaderTab.vue";
 import FooterTab from "../../components/FooterTab.vue";
+import HomeTabNew from "@/components/HomeTabNew.vue";
+import DjBg from "@/components/DjBg.vue";
+
 export default {
   components: {
     FooterTab,
     HeaderTab,
+    HomeTabNew,
+    DjBg,
   },
   data() {
     return {
       nameArr: ["党员姓名", "党员姓名", "党员姓名", "党员姓名", "党员姓名"],
       imgSrc: "",
-      dyxm: "张xx",
-      fzzw: "书记",
+      dyxm: "刘军",
+      fzzw: "党支部书记",
       rsgy: "不忘初心，牢记使命",
     };
   },
@@ -215,4 +159,64 @@ export default {
 </script>
 <style lang="less" scoped>
 @import url("~@/styles/党员风采展示.css");
+
+.top {
+  position: absolute;
+  width: 100%;
+  top: 1148px;
+}
+.breadCrumb {
+  position: relative;
+  padding-left: 250px;
+  padding-top: 15px;
+  overflow: hidden;
+  z-index: 99;
+  .title {
+    float: left;
+  }
+  .tool {
+    margin-top: 4px;
+  }
+}
+
+.list_left {
+  width: 254px;
+  margin: 25px 250px;
+}
+
+.list_left h3 {
+  border-bottom: 2px solid #e34300;
+  background: url(~@/assets/images/党员学习/icon2.jpg) no-repeat;
+  font-size: 22px;
+  font-weight: normal;
+  color: #000;
+  padding-bottom: 5px;
+}
+
+.list_left ul li {
+  height: 38px;
+  line-height: 38px;
+  color: #e2e2e2;
+  font-size: 16px;
+  margin-top: 15px;
+}
+
+.list_left ul a {
+  color: #575656;
+  display: block;
+  height: 38px;
+  line-height: 38px;
+  border: 1px solid #e2e2e2;
+  background: url(~@/assets/images/党员学习/icon2.jpg) no-repeat 35px -59px;
+}
+.list_left ul a:hover {
+  border: 1px solid #e81b00;
+  color: #fff;
+  background: #e81b00 url(~@/assets/images/党员学习/icon2.jpg) no-repeat 35px -100px;
+}
+.list_left ul li a.focus {
+  background: #e81b00;
+  border: 1px solid #e81b00;
+  color: #fff;
+}
 </style>
