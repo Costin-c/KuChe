@@ -3,9 +3,20 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
+  props: {
+    // 定义名为 list 的 prop，类型为 Array
+    khCount: {
+      type: Array,
+      required: true
+    }
+  },
   data() {
-    return {};
+    return {
+      khNameData: [],
+      // khCount: [],
+    };
   },
   methods: {
     drawChart() {
@@ -29,7 +40,12 @@ export default {
         xAxis: [
           {
             type: "category",
-            data: ["张云", "李军", "王敏", "徐涛", "王亮", "李萌", "马可"],
+            data: this.khNameData,
+            axisLabel: {
+              interval: 0, //坐标刻度之间的显示间隔
+              rotate: -45, //调整数值改变倾斜的幅度（范围-90到90）
+              color: "#000", //X坐标轴文字的颜色
+            },
           },
         ],
         yAxis: [
@@ -38,16 +54,6 @@ export default {
           },
         ],
         series: [
-          // {
-          //   name: "未完成",
-          //   type: "bar",
-          //   stack: "Ad",
-          //   emphasis: {
-          //     focus: "series",
-          //   },
-          //   data: [2, 1, 4, 3, 6, 4, 8],
-          // },
-
           {
             name: "已完成",
             type: "bar",
@@ -55,16 +61,63 @@ export default {
             emphasis: {
               focus: "series",
             },
-            data: [6, 7, 4, 5, 2, 4, 3],
+            data: this.khCount,
           },
         ],
       };
       // 使用刚指定的配置项和数据显示图表。
       myChart.setOption(option);
+      // console.log(this.finish);
+    },
+    async getKhList() {
+      await axios
+        .get("http://www.tsllhf.cn:8078/news/webrequest/dykhlist")
+        .then((res) => {
+          this.khData = res.data.rows;
+          console.log(this.khData);
+        });
+
+      this.khData.forEach((item) => {
+        this.khNameData.push(item.dyName);
+      });
+      // this.khData.forEach((item) => {
+      //   this.khCount.push(item.khrwJhjsFinished);
+      // });
+      this.getCount();
+      
+      this.drawChart();
+      console.log(this.khCount);
+    },
+    getCount() {
+      if (this.finish === "khrwJhjsFinished") {
+        // this.finish = "khrwJhjsFinished";
+        // this.khCountArr.length = 0;
+        this.khData.forEach((item) => {
+          this.khCountArr.push(item.khrwJhjsFinished);
+        });
+      } else if (this.finish === "khrwDsxxFinished") {
+        // this.finish = "khrwDsxxFinished";
+        // this.khCountArr.length = 0;
+        this.khData.forEach((item) => {
+          this.khCountArr.push(item.khrwDsxxFinished);
+        });
+      } else if (this.finish === "khrwDjxxFinished") {
+        // this.finish = "khrwDjxxFinished";
+        // this.khCountArr.length = 0;
+        this.khData.forEach((item) => {
+          this.khCountArr.push(item.khrwDjxxFinished);
+        });
+      } else if (this.finish === "khrwZyjnFinished") {
+        // this.finish = "khrwZyjnFinished";
+        // this.khCountArr.length = 0;
+        this.khData.forEach((item) => {
+          this.khCountArr.push(item.khrwZyjnFinished);
+        });
+      }
     },
   },
   mounted() {
-    this.drawChart();
+    this.getKhList();
   },
 };
 </script>

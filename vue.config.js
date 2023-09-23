@@ -9,6 +9,11 @@ module.exports = defineConfig({
     },
     headers: {
       'Access-Control-Allow-Origin': '*',
+    },
+    proxy: {
+      "/api": {
+        target: "http://www.tsllhf.cn:8078/news/webrequest",
+      }
     }
   },
 })

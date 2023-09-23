@@ -10,14 +10,19 @@ const routes = [
     component: () => import('../views/HomeView.vue')
   },
   {
-    path: '/text',
-    name: 'text',
-    component: () => import('../views/TextView.vue')
+    path: '/detail/:gzdtId',
+    name: 'homeDetail',
+    component: () => import('../views/HomeDetail.vue')
   },
   {
     path: '/dwxc',
     name: 'dwxc',
     component: () => import('../views/党务宣传/DwxcView.vue')
+  },
+  {
+    path: '/dwxc/detail/:dwxcId',
+    name: 'dwDetail',
+    component: () => import('../views/党务宣传/DwDetail.vue')
   },
   {
     path: '/dwxc/jsxc',
@@ -35,6 +40,11 @@ const routes = [
     component: () => import('../views/党员学习/LearnView.vue')
   }, 
   {
+    path: '/dyxx/detail/:dyxxId',
+    name: 'detail',
+    component: () => import('../views/党员学习/DetailView.vue')
+  }, 
+  {
     path: '/dyxx/szxx',
     name: 'szxx',
     component: () => import('../views/党员学习/SzxxView.vue')
@@ -45,9 +55,19 @@ const routes = [
     component: () => import('../views/党员学习/DsxxView.vue')
   }, 
   {
+    path: '/dyxx/dwzs',
+    name: 'dwzx',
+    component: () => import('../views/党员学习/DwzsView.vue')
+  }, 
+  {
     path: '/dyxx/zyjn',
     name: 'zyjn',
     component: () => import('../views/党员学习/ZyjnView.vue')
+  }, 
+  {
+    path: '/dyxx/zsk',
+    name: 'zsk',
+    component: () => import('../views/党员学习/ZskView.vue')
   }, 
   {
     path: '/dzzjg',
@@ -60,6 +80,11 @@ const routes = [
     component: () => import('../views/组织结构/DyfcView.vue')
   },
   {
+    path: '/dyfc/:dyId',
+    name: 'dyfc',
+    component: () => import('../views/组织结构/DyfcView.vue')
+  },
+  {
     path: '/dzzzz',
     name: 'dzzzz',
     component: () => import('../views/组织结构/DzzzzView.vue')
@@ -68,11 +93,6 @@ const routes = [
     path: '/xjtj',
     name: 'xjtj',
     component: () => import('../views/组织结构/XjtjView.vue')
-  },
-  {
-    path: '/khrwxf',
-    name: 'khrwxf',
-    component: () => import('../views/党组织考核管理/KhrwxfView.vue')
   },
   {
     path: '/khtjbb',

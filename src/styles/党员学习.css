@@ -10,10 +10,6 @@
   z-index: 1;
 }
 #u242 {
-  border-width: 0px;
-  position: absolute;
-  left: 0px;
-  top: 1300px;
   width: 100%;
   height: 57px;
   display: flex;
@@ -27,13 +23,10 @@
   height: 5px;
 }
 #u247 {
-  border-width: 0px;
   position: absolute;
-  left: 150px;
-  top: 720px;
-  width: 720px;
-  height: 2px;
-  display: flex;
+  left: 455px;
+  top: 90px;
+  width: 120px;
   -webkit-transform: rotate(90.0565972deg);
   -moz-transform: rotate(90.0565972deg);
   -ms-transform: rotate(90.0565972deg);

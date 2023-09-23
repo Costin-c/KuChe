@@ -31,8 +31,9 @@ export default {};
 /*全国党建联盟网站 start*/
 
 .am-yndwlm-bg {
-    overflow: hidden;
+  overflow: hidden;
   background: #f6b84b;
+  width: 100%;
 }
 .am-container {
   -webkit-box-sizing: border-box;
@@ -62,7 +63,6 @@ export default {};
   padding-left: 10px;
   font-size: 1.2rem;
 }
-
 
 .am-yndwlm-bg .am-fr ul li a {
   font-size: 1rem;

@@ -26,7 +26,7 @@
 
     <div class="content">
       <div class="bigTitle">
-        <h1>{{ this.zzTitle }}</h1>
+        <h1>{{ this.dyInfo.dyxxTitle }}</h1>
       </div>
 
       <!-- Unnamed (线段) -->
@@ -41,40 +41,48 @@
       <!-- Unnamed (矩形) -->
       <div id="u84" class="ax_default _一级标题">
         <div id="u84_text" class="text">
-          <p>
+          <p id="u84_height">
             <span>
               {{ formattedData }}
-              <!-- 7月16日，库车市组织召开2022年上半年“访惠聚”驻村工作暨群众工作推进会。 -->
             </span>
           </p>
-          <!-- <div class="bottom20" :v-show="0">
-            <img src="@/assets/images/党组织职责/u84.png" alt="" />
-          </div>
-          <p :v-show="0">
-            <span>
-              {{ publicData }}
-            </span>
+          <!-- <p>
+            <span
+              >会前，与会人员先后来到玉奇吾斯塘乡拜什格然木村农产品展销会场及村级事务管理项目阵地、阿拉哈格镇库纳斯村网格精细化范点、齐满镇阿曼托格拉克村宣传阵地就基层党组织建设及群众工作、“访惠聚”工作等内容进行了现场观摩。</span
+            >
           </p> -->
+          <div class="bottom20" :v-if="0">
+            <img :src="imgSrc" alt="" />
+          </div>
+          <p :v-if="0">
+            <span>
+              <!-- {{ publicData }} -->
+            </span>
+          </p>
 
           <div class="list">
             <!-- Unnamed (线段) -->
-            <!-- <div id="u82" class="ax_default line">
+            <div id="u82" class="ax_default line">
               <img
                 id="u82_img"
                 class="img"
                 src="@/assets/images/党组织职责/u81.svg"
               />
-            </div> -->
+            </div>
 
             <!-- Unnamed (矩形) -->
-            <!-- <div id="u80" class="ax_default _一级标题">
+            <div id="u80" class="ax_default _一级标题">
               <div id="u80_text" class="text">
                 <p style="margin-top: 30px">
-                  <span>时间：{{ this.publicDate }}</span>
-                  <span>发布人：{{ this.publicName }}</span>
+                  <span>时间：{{ formattedDate }}</span>
+                  <span>发布人：{{ this.dyInfo.createBy }}</span>
+                  <!-- this.dyInfo.createTime.slice(0, 10) -->
                 </p>
+                <!-- <p>
+                  <span>发布人：{{ this.dyInfo.createBy }}</span>
+                </p> -->
               </div>
-            </div> -->
+            </div>
 
             <!-- Unnamed (矩形) -->
             <!-- <div id="u83" class="ax_default _一级标题">
@@ -87,33 +95,6 @@
           </div>
         </div>
       </div>
-
-      <!-- Unnamed (线段) -->
-      <!-- <div id="u82" class="ax_default line">
-        <img
-          id="u82_img"
-          class="img"
-          src="@/assets/images/党组织职责/u81.svg"
-        />
-      </div> -->
-
-      <!-- Unnamed (矩形) -->
-      <!-- <div id="u80" class="ax_default _一级标题">
-        <div id="u80_text" class="text">
-          <p>
-            <span>时间：{{ publicDate }}</span>
-          </p>
-        </div>
-      </div> -->
-
-      <!-- Unnamed (矩形) -->
-      <!-- <div id="u83" class="ax_default _一级标题">
-        <div id="u83_text" class="text">
-          <p>
-            <span>发布人：{{ publicName }}</span>
-          </p>
-        </div>
-      </div> -->
     </div>
 
     <div class="footer">
@@ -133,6 +114,7 @@
 import HeaderTab from "@/components/HeaderTab.vue";
 import FooterTab from "../../components/FooterTab.vue";
 import HomeTabNew from "@/components/HomeTabNew.vue";
+import formatDate from "@/utils/formatDate";
 import DjBg from "@/components/DjBg.vue";
 import axios from "axios";
 
@@ -146,51 +128,67 @@ export default {
   data() {
     return {
       publicName: "xxx",
-      publicDate: "2023-5-31",
-      publicData: `“学习贯彻新时代中国特色社会主义思想是新时代新征程开创事业发展新局面的根本要求。”
-
-近期出版的《求是》杂志刊发习近平总书记重要文章《在二十届中央政治局第四次集体学习时的讲话》。在这篇重要文章中，习近平总书记深刻阐释开展主题教育的主要考量。“学习贯彻新时代中国特色社会主义思想是新时代新征程开创事业发展新局面的根本要求。”
-
-近期出版的《求是》杂志刊发习近平总书记重要文章《在二十届中央政治局第四次集体学习时的讲话》。在这篇重要文章中，习近平总书记深刻阐释开展主题教育的主要考量。“学习贯彻新时代中国特色社会主义思想是新时代新征程开创事业发展新局面的根本要求。”
-
-近期出版的《求是》杂志刊发习近平总书记重要文章《在二十届中央政治局第四次集体学习时的讲话》。在这篇重要文章中，习近平总书记深刻阐释开展主题教育的主要考量。“学习贯彻新时代中国特色社会主义思想是新时代新征程开创事业发展新局面的根本要求。”`,
-      zzTitle: '',
-      zzContent: '',
-      textHeight: 1000,
+      publicDate: "",
+      dyInfo: [],
+      dyxxId: "",
+      imgSrc: "",
+      dyxxContent: "",
+      createTime: "",
+      textHeight: 800,
     };
   },
-  beforeMount() {
-    this.getDzzInfo();
+  mounted() {
+    // this.getDyInfo();
+    console.log(this.$route);
+    this.dyxxId = this.$route.params.dyxxId;
+    this.getDyId(this.$route.params.dyxxId);
   },
   methods: {
-    async getDzzInfo() {
+    formatDate,
+    async getDyId() {
       await axios
-        .get("http://www.tsllhf.cn:8078/news/webrequest/dyzzlist")
+        .get(
+          `http://www.tsllhf.cn:8078/news/webrequest/dyxxinfo/${this.dyxxId}`
+        )
         .then((res) => {
-          console.log(res);
-          this.zzTitle = res.data.rows[0].zzTitle;
-          this.zzContent = res.data.rows[0].zzContent;
-          // console.log(this.dzzInfo);
+          // console.log(res);
+          this.dyInfo = res.data.data;
+          console.log(this.dyInfo);
+          this.dyxxContent = this.dyInfo.dyxxContent;
+          this.createTime = this.dyInfo.createTime;
         });
 
-      console.log(this.dzzInfo);
       this.getEleHeight();
 
       const footer = document.getElementsByClassName("footer")[0];
-      footer.style.top = this.textHeight + 200 + "px";
+      footer.style.top = this.textHeight + 300 + "px";
     },
+    // async getDyInfo() {
+    //   await axios
+    //     .get("http://www.tsllhf.cn:8078/news/webrequest/dyxxlist")
+    //     .then((res) => {
+    //       // console.log(res);
+    //       this.dyInfo = res.data.rows;
+    //     });
+
+    //   console.log(this.dyInfo);
+    // },
+
     getEleHeight() {
-      const div = document.getElementById("u84_text");
+      const div = document.getElementById("u84_height");
       console.log(div.clientHeight);
       this.textHeight = div.clientHeight;
-      // return this.textHeight;
+      return this.textHeight;
     },
   },
   computed: {
     formattedData() {
-      return this.zzContent.replace(/<.+?>/g, "");
+      return this.dyxxContent.replace(/<(\/)?p>/g, "");
     },
-  }
+    formattedDate() {
+      return this.createTime.slice(0, 10);
+    },
+  },
 };
 </script>
 
@@ -221,7 +219,11 @@ export default {
 .bigTitle {
   margin-top: 30px;
 }
-
+.content {
+  position: relative;
+  width: 100%;
+  // overflow: hidden;
+}
 .footer {
   position: relative;
   width: 100%;

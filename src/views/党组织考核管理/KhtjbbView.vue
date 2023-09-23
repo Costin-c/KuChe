@@ -2,7 +2,6 @@
   <div id="base" class="">
     <div class="header">
       <HeaderTab text="考核统计"></HeaderTab>
-
       <HomeTabNew></HomeTabNew>
     </div>
 
@@ -52,16 +51,20 @@
                     :default-first-option="true"
                     v-model="formInline.xxlb"
                     placeholder="请选择(必选)"
+                    @change="getCount"
                   >
+                    <el-option label="讲话精神" value="jhjs"></el-option>
                     <el-option label="党史学习" value="dsxx"></el-option>
-                    <el-option label="素质教育" value="szjy"></el-option>
+                    <el-option label="党纪学习" value="djxx"></el-option>
+                    <el-option label="专业技能" value="zyjn"></el-option>
                   </el-select>
                 </el-form-item>
               </el-form>
             </div>
 
             <div class="echarts" v-show="onSubmit()">
-              <ChartsBlock></ChartsBlock>
+              <!-- <ChartsBlock :kh-count="khCount"></ChartsBlock> -->
+              <div id="main" style="width: 600px; height: 400px"></div>
             </div>
           </div>
         </div>
@@ -94,39 +97,48 @@
                     :default-first-option="true"
                     v-model="formInline.xxlb"
                     placeholder="请选择(必选)"
+                    @change="getCount"
                   >
+                    <el-option label="讲话精神" value="jhjs"></el-option>
                     <el-option label="党史学习" value="dsxx"></el-option>
-                    <el-option label="素质教育" value="szjy"></el-option>
+                    <el-option label="党纪学习" value="djxx"></el-option>
+                    <el-option label="专业技能" value="zyjn"></el-option>
                   </el-select>
                 </el-form-item>
               </el-form>
             </div>
-            <div class="tjList">
-              <el-table align="center" :data="tableData" style="width: 100%">
+            <div
+              class="tjList"
+              style="display: flex; padding: 20px"
+              v-show="onSubmit()"
+            >
+              <el-table align="center" :data="tableData1" style="width: 100%">
                 <el-table-column
                   align="center"
-                  prop="name"
+                  prop="dyName"
                   label="姓名"
                   width="200"
                 >
                 </el-table-column>
                 <el-table-column
                   align="center"
-                  prop="finish"
+                  :prop="finish"
                   label="完成数"
                   width="200"
                 >
                 </el-table-column>
+              </el-table>
+              <el-table align="center" :data="tableData2" style="width: 100%">
                 <el-table-column
                   align="center"
-                  prop="name"
+                  prop="dyName"
                   label="姓名"
                   width="200"
                 >
                 </el-table-column>
                 <el-table-column
                   align="center"
-                  prop="finish"
+                  :prop="finish"
                   label="完成数"
                   width="200"
                 >
@@ -158,7 +170,7 @@ import HeaderTab from "@/components/HeaderTab.vue";
 import FooterTab from "../../components/FooterTab.vue";
 import HomeTabNew from "@/components/HomeTabNew.vue";
 import DjBg from "@/components/DjBg.vue";
-import ChartsBlock from "@/components/ChartsBlock.vue";
+import axios from "axios";
 
 export default {
   components: {
@@ -166,7 +178,6 @@ export default {
     FooterTab,
     HomeTabNew,
     DjBg,
-    ChartsBlock,
   },
   data() {
     return {
@@ -180,51 +191,142 @@ export default {
           new Date(new Date().getFullYear(), new Date().getMonth(), 1),
           new Date(),
         ],
-        xxlb: "党史学习",
+        xxlb: "讲话精神",
       },
-      tableData: [
-        {
-          name: "张云",
-          finish: 6,
-        },
-        {
-          name: "李军",
-          finish: 7,
-        },
-        {
-          name: "王敏",
-          finish: 4,
-        },
-        {
-          name: "徐涛",
-          finish: 5,
-        },
-        {
-          name: "王亮",
-          finish: 2,
-        },
-        {
-          name: "李萌",
-          finish: 4,
-        },
-        {
-          name: "马可",
-          finish: 3,
-        },
-      ],
+      tableData: [],
+      tableData1: [],
+      tableData2: [],
+      finish: "khrwJhjsFinished",
+      khCount: [],
+      khNameData: [],
     };
   },
+  beforeMount() {
+    this.getDyData();
+    this.getKhList();
+  },
   methods: {
+    async getDyData() {
+      await axios
+        .get("http://www.tsllhf.cn:8078/news/webrequest/dykhlist")
+        .then((res) => {
+          this.tableData = res.data.rows;
+          console.log(this.tableData);
+        });
+      this.getList();
+    },
     onSubmit() {
-      // console.log("submit!");
-      // console.log(this.formInline);
-      const _echarts = document.getElementsByClassName("echarts");
-      console.log(_echarts);
       if (this.formInline.date && this.formInline.xxlb != "") {
         console.log("submit!");
         return 1;
       }
       return 0;
+    },
+    getList() {
+      // 分别放入列表中
+      this.tableData.forEach((item, index) => {
+        // 前一半
+        if (index < this.tableData.length / 2) this.tableData1.push(item);
+        // 后一半
+        else this.tableData2.push(item);
+      });
+    },
+    drawChart() {
+      // 基于准备好的dom，初始化echarts实例  这个和上面的main对应
+      let myChart = this.$echarts.init(document.getElementById("main"));
+      // 指定图表的配置项和数据
+      let option = {
+        tooltip: {
+          trigger: "axis",
+          axisPointer: {
+            type: "shadow",
+          },
+        },
+        legend: {},
+        grid: {
+          left: "3%",
+          right: "4%",
+          bottom: "3%",
+          containLabel: true,
+        },
+        xAxis: [
+          {
+            type: "category",
+            data: this.khNameData,
+            axisLabel: {
+              interval: 0, //坐标刻度之间的显示间隔
+              rotate: -45, //调整数值改变倾斜的幅度（范围-90到90）
+              color: "#000", //X坐标轴文字的颜色
+            },
+          },
+        ],
+        yAxis: [
+          {
+            type: "value",
+          },
+        ],
+        series: [
+          {
+            name: "已完成",
+            type: "bar",
+            stack: "Ad",
+            emphasis: {
+              focus: "series",
+            },
+            data: this.khCount,
+          },
+        ],
+      };
+      // 使用刚指定的配置项和数据显示图表。
+      myChart.setOption(option);
+      // console.log(this.finish);
+    },
+    async getKhList() {
+      await axios
+        .get("http://www.tsllhf.cn:8078/news/webrequest/dykhlist")
+        .then((res) => {
+          this.khData = res.data.rows;
+          console.log(this.khData);
+        });
+
+      this.khData.forEach((item) => {
+        this.khNameData.push(item.dyName);
+      });
+      this.tableData.forEach((item) => {
+        this.khCount.push(item.khrwJhjsFinished);
+      });
+      this.drawChart();
+    },
+    getCount(val) {
+      if (val === "jhjs") {
+        this.finish = "khrwJhjsFinished";
+        this.khCount = [];
+        this.tableData.forEach((item) => {
+          this.khCount.push(item.khrwJhjsFinished);
+        });
+        this.drawChart();
+      } else if (val === "dsxx") {
+        this.finish = "khrwDsxxFinished";
+        this.khCount = [];
+        this.tableData.forEach((item) => {
+          this.khCount.push(item.khrwDsxxFinished);
+        });
+        this.drawChart();
+      } else if (val === "djxx") {
+        this.finish = "khrwDjxxFinished";
+        this.khCount = [];
+        this.tableData.forEach((item) => {
+          this.khCount.push(item.khrwDjxxFinished);
+        });
+        this.drawChart();
+      } else if (val === "zyjn") {
+        this.finish = "khrwZyjnFinished";
+        this.khCount = [];
+        this.tableData.forEach((item) => {
+          this.khCount.push(item.khrwZyjnFinished);
+        });
+        this.drawChart();
+      }
     },
   },
 };

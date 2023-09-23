@@ -35,22 +35,28 @@
       <div id="u0" class="ax_default _图片_">
         <div class="carousel">
           <!-- 轮播图 -->
-          <!-- <CarouselLamp></CarouselLamp> -->
-          <img id="u0_img" class="img" src="@/assets/images/首页/u0.png" />
+          <CarouselLamp></CarouselLamp>
         </div>
         <div class="jobList">
           <div class="jobHerader">
             <img width="101%" src="@/assets/images/首页/job.png" alt="" />
           </div>
           <ul>
-            <li v-for="items in arrList" :key="items.index">
-              <span class="left">{{ items.title }}</span>
-              <span class="right">{{ items.date }}</span>
+            <li v-for="(items, index) in jobList" :key="index">
+              <router-link
+                :to="{
+                  name: 'homeDetail',
+                  params: {
+                    gzdtId: items.gzdtId,
+                  },
+                }"
+                ><span class="left">{{ items.gzdtTitle }}</span>
+                <span class="right">{{ items.createTime.slice(0, 10) }}</span>
+              </router-link>
             </li>
           </ul>
         </div>
       </div>
-
 
       <!-- Unnamed (图片 ) -->
       <div id="u24" class="ax_default _图片_">
@@ -97,54 +103,71 @@
         </div>
 
         <!-- Unnamed (矩形) -->
-        <div id="u28" class="ax_default _文本段落">
+        <!-- <div id="u28" class="ax_default _文本段落">
           <div id="u28_div" class=""></div>
           <div id="u28_text" class="text">
             <p><span>三会一课</span></p>
           </div>
-        </div>
+        </div> -->
 
         <!-- Unnamed (矩形) -->
-        <div id="u29" class="ax_default _文本段落">
+        <!-- <div id="u29" class="ax_default _文本段落">
           <div id="u29_div" class=""></div>
           <div id="u29_text" class="text">
             <p><span>素质学习</span></p>
           </div>
-        </div>
+        </div> -->
 
         <!-- Unnamed (矩形) -->
-        <div id="u30" class="ax_default _文本段落">
+        <!-- <div id="u30" class="ax_default _文本段落">
           <div id="u30_div" class=""></div>
           <div id="u30_text" class="text">
             <p><span>党史学习</span></p>
           </div>
-        </div>
+        </div> -->
 
         <!-- Unnamed (矩形) -->
-        <div id="u31" class="ax_default _文本段落">
+        <!-- <div id="u31" class="ax_default _文本段落">
           <div id="u31_div" class=""></div>
           <div id="u31_text" class="text">
             <p><span>技能学习</span></p>
           </div>
-        </div>
-
+        </div> -->
       </div>
 
       <!-- Unnamed (图片 ) -->
       <div id="u2" class="ax_default _图片_">
         <div class="jobList">
           <ul>
-            <li v-for="items in arrList" :key="items.index">
-              <span class="left">{{ items.title }}</span>
-              <span class="right">{{ items.date }}</span>
+            <li v-for="(items, index) in shArr" :key="index">
+              <router-link
+                :to="{
+                  name: 'detail',
+                  params: {
+                    dyxxId: items.dyxxId,
+                  },
+                }"
+              >
+                <span class="left">{{ items.dyxxTitle }}</span>
+                <span class="right">{{ items.createTime.slice(0, 10) }}</span>
+              </router-link>
             </li>
           </ul>
         </div>
         <div class="jobList">
           <ul>
-            <li v-for="items in arrList" :key="items.index">
-              <span class="left">{{ items.title }}</span>
-              <span class="right">{{ items.date }}</span>
+            <li v-for="(items, index) in szArr" :key="index">
+              <router-link
+                :to="{
+                  name: 'detail',
+                  params: {
+                    dyxxId: items.dyxxId,
+                  },
+                }"
+              >
+                <span class="left">{{ items.dyxxTitle }}</span>
+                <span class="right">{{ items.createTime.slice(0, 10) }}</span>
+              </router-link>
             </li>
           </ul>
         </div>
@@ -280,17 +303,35 @@
       <div id="u41" class="ax_default _图片_">
         <div class="jobList">
           <ul>
-            <li v-for="items in arrList" :key="items.index">
-              <span class="left">{{ items.title }}</span>
-              <span class="right">{{ items.date }}</span>
+            <li v-for="items in dwArr" :key="items.index">
+              <router-link
+                :to="{
+                  name: 'dwDetail',
+                  params: {
+                    dwxcId: items.dwxcId,
+                  },
+                }"
+              >
+                <span class="left">{{ items.dwxcTitle }}</span>
+                <span class="right">{{ items.createTime.slice(0, 10) }}</span>
+              </router-link>
             </li>
           </ul>
         </div>
         <div class="jobList">
           <ul>
-            <li v-for="items in arrList" :key="items.index">
-              <span class="left">{{ items.title }}</span>
-              <span class="right">{{ items.date }}</span>
+            <li v-for="items in jlArr" :key="items.index">
+              <router-link
+                :to="{
+                  name: 'dwDetail',
+                  params: {
+                    dwxcId: items.dwxcId,
+                  },
+                }"
+              >
+                <span class="left">{{ items.dwxcTitle }}</span>
+                <span class="right">{{ items.createTime.slice(0, 10) }}</span>
+              </router-link>
             </li>
           </ul>
         </div>
@@ -313,15 +354,16 @@
 <script>
 import FooterTab from "@/components/FooterTab.vue";
 import HomeTabNew from "@/components/HomeTabNew.vue";
-// import CarouselLamp from "@/components/CarouselLamp.vue";
+import CarouselLamp from "@/components/CarouselLamp.vue";
 import DjBg from "@/components/DjBg.vue";
+import axios from "axios";
 export default {
   name: "HomeView",
   components: {
     FooterTab,
     HomeTabNew,
     DjBg,
-    // CarouselLamp,
+    CarouselLamp,
   },
   data() {
     return {
@@ -356,7 +398,20 @@ export default {
           date: "2023-05-08",
         },
       ],
+      jobList: [],
+      learnArr: [],
+      shArr: [],
+      szArr: [],
+      dwxcArr: [],
+      dwArr: [],
+      jlArr: [],
     };
+  },
+  beforeMount() {
+    this.getTime();
+    this.getJobList();
+    this.getLearnList();
+    this.getDwxcList();
   },
   methods: {
     getTime() {
@@ -376,9 +431,73 @@ export default {
       var day = date.getDay();
       this.todayDate = year + "年" + month + "月" + dates + "号 " + arr[day];
     },
-  },
-  beforeMount() {
-    this.getTime();
+    getJobList() {
+      const ins = axios.create();
+      ins
+        .get("http://www.tsllhf.cn:8078/news/webrequest/gzdtlist")
+        .then((res) => {
+          // console.log(res.data.rows);
+          this.jobList = res.data.rows;
+        });
+    },
+    async getLearnList() {
+      const ins = axios.create();
+      await ins
+        .get("http://www.tsllhf.cn:8078/news/webrequest/dyxxlist")
+        .then((res) => {
+          this.learnArr = res.data.rows;
+          console.log(this.learnArr);
+        });
+      this.addshArr();
+      this.addszArr();
+    },
+    addshArr() {
+      for (let i = 0; i < this.learnArr.length; i++) {
+        if (this.learnArr[i].dyxxType === "三会一课") {
+          this.shArr.push(this.learnArr[i]);
+          // console.log(this.learnArr[i]);
+        }
+      }
+      // console.log(this.shArr);
+    },
+    addszArr() {
+      for (let i = 0; i < this.learnArr.length; i++) {
+        if (this.learnArr[i].dyxxType === "素质学习") {
+          this.szArr.push(this.learnArr[i]);
+          // console.log(this.learnArr[i]);
+        }
+      }
+      // console.log(this.szArr);
+    },
+    async getDwxcList() {
+      const ins = axios.create();
+      await ins
+        .get("http://www.tsllhf.cn:8078/news/webrequest/dwxclist")
+        .then((res) => {
+          this.dwxcArr = res.data.rows;
+          console.log(this.dwxcArr);
+        });
+      this.adddwArr();
+      this.addjlArr();
+    },
+    adddwArr() {
+      for (let i = 0; i < this.dwxcArr.length; i++) {
+        if (this.dwxcArr[i].dwxcType === "党务政策宣传") {
+          this.dwArr.push(this.dwxcArr[i]);
+          // console.log(this.learnArr[i]);
+        }
+      }
+      console.log(this.dwArr);
+    },
+    addjlArr() {
+      for (let i = 0; i < this.dwxcArr.length; i++) {
+        if (this.dwxcArr[i].dwxcType === "纪律警示宣传") {
+          this.jlArr.push(this.dwxcArr[i]);
+          // console.log(this.learnArr[i]);
+        }
+      }
+      console.log(this.jlArr);
+    },
   },
 };
 </script>
@@ -404,6 +523,19 @@ export default {
       display: flex;
       justify-content: space-between;
       list-style: circle;
+      // a, .left, .right{
+      //   display: inline-block;
+      // }
+      a {
+        display: flex;
+      }
+      .left {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 370px;
+        text-align: left;
+      }
     }
   }
   .jobHerader {

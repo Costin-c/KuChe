@@ -11,9 +11,6 @@
 }
 #u86 {
   /* border-width: 0px; */
-  position: absolute;
-  left: 0px;
-  top: 1000px;
   width: 100%;
   height: 57px;
   display: flex;

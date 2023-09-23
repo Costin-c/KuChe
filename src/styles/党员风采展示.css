@@ -173,7 +173,7 @@
   font-size: 14px;
 }
 
-#u247_img {
+#u300_img {
   border-width: 0px;
   position: absolute;
   left: -1px;
@@ -181,7 +181,7 @@
   width: 720px;
   height: 5px;
 }
-#u247 {
+#u300 {
   border-width: 0px;
   position: absolute;
   left: 235px;
@@ -194,14 +194,14 @@
   -ms-transform: rotate(90.0565971988972deg);
   transform: rotate(90.0565971988972deg);
 }
-#u247 .text {
+#u300 .text {
   position: absolute;
   align-self: center;
   padding: 2px 2px 2px 2px;
   box-sizing: border-box;
   width: 100%;
 }
-#u247_text {
+#u300_text {
   border-width: 0px;
   word-wrap: break-word;
   text-transform: none;

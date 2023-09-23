@@ -19,7 +19,7 @@
                 >党员学习</router-link
               ></el-breadcrumb-item
             >
-            <el-breadcrumb-item>党史学习</el-breadcrumb-item>
+            <el-breadcrumb-item>知识库</el-breadcrumb-item>
           </el-breadcrumb>
         </div>
       </div>
@@ -75,7 +75,7 @@
         <div class="newsList">
           <div class="dyw981_act">
             <ul class="dyw981_text">
-              <li class="text" v-for="(items, index) in dsArr" :key="index">
+              <li class="text" v-for="(items, index) in zskArr" :key="index">
                 <router-link
                   :to="{
                     name: 'detail',
@@ -126,7 +126,7 @@ export default {
   data() {
     return {
       newsArr: [],
-      dsArr: [],
+      zskArr: []
     };
   },
   beforeMount() {
@@ -140,15 +140,15 @@ export default {
           this.newsArr = res.data.rows;
           // console.log(this.newsArr);
         });
-      this.addArr();
+        this.addArr();
     },
     addArr() {
       for (let i = 0; i < this.newsArr.length; i++) {
-        if (this.newsArr[i].dyxxType === "党史学习") {
-          this.dsArr.push(this.newsArr[i]);
+        if (this.newsArr[i].dyxxType === "知识库") {
+          this.zskArr.push(this.newsArr[i]);
         }
       }
-      console.log(this.dsArr);
+      console.log(this.zskArr);
     },
   },
 };
@@ -156,6 +156,12 @@ export default {
 
 <style lang="less" scoped>
 @import url("~@/styles/党员学习.css");
+
+// .top {
+//   position: absolute;
+//   width: 100%;
+//   top: 1248px;
+// }
 
 .breadCrumb {
   // width: 100%;
@@ -190,6 +196,7 @@ export default {
     height: 1000px;
     .dyw981_act {
       background: #fff;
+      // padding: 10px 0 40px;
       margin: 10px 0;
     }
     .dyw981_text {
