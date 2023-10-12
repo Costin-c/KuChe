@@ -1,10 +1,19 @@
 <template>
   <div id="base" class="">
-    <div class="header">
-      <HeaderTab text="党组织职责"></HeaderTab>
+    <!-- <div class="header">
+      <HeaderTab text="党务宣传详情"></HeaderTab>
 
       <HomeTabNew></HomeTabNew>
+    </div> -->
+    <div class="header">
+      <div id="u3" class="ax_default _图片_"></div>
 
+      <div class="tab">
+        <HomeTabNew></HomeTabNew>
+      </div>
+    </div>
+
+    <div class="content">
       <div class="breadCrumb">
         <div class="title">
           <span>您当前所在的位置：</span>
@@ -15,16 +24,11 @@
               ><router-link to="/">首页</router-link></el-breadcrumb-item
             >
             <el-breadcrumb-item
-              ><router-link to="/dzzzz"
-                >党务宣传详情</router-link
-              ></el-breadcrumb-item
+              ><router-link to="">党务宣传详情</router-link></el-breadcrumb-item
             >
           </el-breadcrumb>
         </div>
       </div>
-    </div>
-
-    <div class="content">
       <div class="bigTitle">
         <h1>{{ this.dwInfo.dwxcTitle }}</h1>
       </div>
@@ -41,25 +45,7 @@
       <!-- Unnamed (矩形) -->
       <div id="u84" class="ax_default _一级标题">
         <div id="u84_text" class="text">
-          <p id="u84_height">
-            <span>
-              {{ formattedData }}
-            </span>
-          </p>
-          <!-- <p>
-            <span
-              >会前，与会人员先后来到玉奇吾斯塘乡拜什格然木村农产品展销会场及村级事务管理项目阵地、阿拉哈格镇库纳斯村网格精细化范点、齐满镇阿曼托格拉克村宣传阵地就基层党组织建设及群众工作、“访惠聚”工作等内容进行了现场观摩。</span
-            >
-          </p> -->
-          <div class="bottom20" :v-if="0">
-            <img :src="imgSrc" alt="" />
-          </div>
-          <p :v-if="0">
-            <span>
-              <!-- {{ publicData }} -->
-            </span>
-          </p>
-
+          <div id="u84_height" v-html="dwxcContent"></div>
           <div class="list">
             <!-- Unnamed (线段) -->
             <div id="u82" class="ax_default line">
@@ -76,28 +62,15 @@
                 <p style="margin-top: 30px">
                   <span>时间：{{ formattedDate }}</span>
                   <span>发布人：{{ this.dwInfo.createBy }}</span>
-                  <!-- this.dyInfo.createTime.slice(0, 10) -->
                 </p>
-                <!-- <p>
-                  <span>发布人：{{ this.dyInfo.createBy }}</span>
-                </p> -->
               </div>
             </div>
-
-            <!-- Unnamed (矩形) -->
-            <!-- <div id="u83" class="ax_default _一级标题">
-              <div id="u83_text" class="text">
-                <p>
-                  <span>发布人：{{ this.dyInfo.createBy }}</span>
-                </p>
-              </div>
-            </div> -->
           </div>
         </div>
       </div>
     </div>
 
-    <div class="footer">
+    <div class="footer" v-show="showFooter">
       <div class="top">
         <DjBg></DjBg>
       </div>
@@ -111,7 +84,7 @@
 </template>
 
 <script>
-import HeaderTab from "@/components/HeaderTab.vue";
+// import HeaderTab from "@/components/HeaderTab.vue";
 import FooterTab from "../../components/FooterTab.vue";
 import HomeTabNew from "@/components/HomeTabNew.vue";
 import formatDate from "@/utils/formatDate";
@@ -121,7 +94,7 @@ import axios from "axios";
 export default {
   components: {
     FooterTab,
-    HeaderTab,
+    // HeaderTab,
     HomeTabNew,
     DjBg,
   },
@@ -134,12 +107,11 @@ export default {
       imgSrc: "",
       dwxcContent: "",
       createTime: "",
-      textHeight: 800,
+      textHeight: 1200,
+      showFooter: false,
     };
   },
   mounted() {
-    // this.getDyInfo();
-    console.log(this.$route);
     this.dwxcId = this.$route.params.dwxcId;
     this.getDyId(this.$route.params.dwxcId);
   },
@@ -151,24 +123,27 @@ export default {
           `http://www.tsllhf.cn:8078/news/webrequest/dwxcinfo/${this.dwxcId}`
         )
         .then((res) => {
-          // console.log(res);
           this.dwInfo = res.data.data;
-          console.log(this.dwInfo);
           this.dwxcContent = this.dwInfo.dwxcContent;
           this.createTime = this.dwInfo.createTime;
         });
 
-      this.getEleHeight();
-
-      const footer = document.getElementsByClassName("footer")[0];
-      footer.style.top = this.textHeight + 300 + "px";
+      let imgs = document
+        .getElementById("u84_height")
+        .getElementsByTagName("img");
+      if (imgs.length == 0) this.getEleHeight();
+      else
+        for (var i = 0; i < imgs.length; i++)
+          imgs[i].onload = () => {
+            if (i == imgs.length) this.getEleHeight();
+          };
     },
 
-    getEleHeight() {
-      const div = document.getElementById("u84_height");
-      console.log(div.clientHeight);
-      this.textHeight = div.clientHeight;
-      return this.textHeight;
+    async getEleHeight() {
+      this.showFooter = true;
+      const footer = document.getElementsByClassName("footer")[0];
+      footer.style.top =
+        document.getElementById("u84_height").clientHeight + 300 + "px";
     },
   },
   computed: {
@@ -194,13 +169,15 @@ export default {
 .breadCrumb {
   // width: 100%;
   position: relative;
-  padding-left: 208px;
+  // padding-left: 290px;
   padding-top: 24px;
   overflow: hidden;
   z-index: 99;
+
   .title {
     float: left;
   }
+
   .tool {
     margin-top: 4px;
   }
@@ -209,14 +186,27 @@ export default {
 .bigTitle {
   margin-top: 30px;
 }
+
 .content {
   position: relative;
   width: 1109px;
   margin: 0 auto;
 }
+
 .footer {
   position: relative;
   width: 100%;
   // top: 500px;
+}
+
+#u3 {
+  background-color: #c8161d;
+  width: 100%;
+  height: 300px;
+  display: flex;
+  background-image: url(~@/assets/images/首页/head.png);
+  background-size: 100%;
+  align-items: flex-end;
+  justify-content: flex-end;
 }
 </style>

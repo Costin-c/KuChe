@@ -20,9 +20,9 @@
 }
 #u58 {
   border-width: 0px;
-  position: absolute;
-  left: 0px;
-  top: 1200px;
+  /* position: absolute; */
+  /* left: 0px; */
+  /* top: 1200px; */
   width: 100%;
   height: 57px;
   display: flex;
@@ -178,17 +178,14 @@
   position: absolute;
   left: -1px;
   top: -1px;
-  width: 720px;
+  width: 940px;
   height: 5px;
 }
 #u300 {
-  border-width: 0px;
   position: absolute;
-  left: 235px;
-  top: 720px;
-  width: 720px;
-  height: 2px;
-  display: flex;
+  left: 455px;
+  top: 125px;
+  width: 120px;
   -webkit-transform: rotate(90.0565971988972deg);
   -moz-transform: rotate(90.0565971988972deg);
   -ms-transform: rotate(90.0565971988972deg);

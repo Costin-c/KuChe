@@ -4,20 +4,20 @@
     <div class="f_con">
       <div class="f_left">
         <ul class="left_ui">
-          <li><a href="">关于我们</a></li>
+          <li><router-link to="/about">关于我们</router-link></li>
           <li>|</li>
-          <li><a href="">联系我们</a></li>
+          <li><a href="">©Copyright 2007 All Reserved</a></li>
           <li>|</li>
-          <li><a href="">网站地图</a></li>
-          <li>|</li>
-          <li><a href="">用户调查</a></li>
+          <!-- <li><a href="">网站地图</a></li>
+          <li>|</li> -->
+          <li><a href="">邮编：842000</a></li>
         </ul>
       </div>
       <div class="f_right">
         <ul class="right_ui">
           <li><a href="">主管单位：中共库车市委员会组织部</a></li>
           <!-- <li><a href="">版权所有</a></li> -->
-          <li><a href="">京ICP备12024999号-1</a></li>
+          <!-- <li><a href="">涉未成年人专用举报热线：0997-7770658</a></li> -->
         </ul>
       </div>
     </div>

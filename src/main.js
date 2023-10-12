@@ -9,11 +9,6 @@ import 'element-ui/lib/theme-chalk/index.css';
 
 import * as echarts from 'echarts'; 
 
-
-// import "../src/styles/axure_rp_page.css"
-// import "../src/styles/default.css"
-// import "../src/styles/jquery-ui-themes.css"
-
 Vue.config.productionTip = false
 
 // 使用 element-ui

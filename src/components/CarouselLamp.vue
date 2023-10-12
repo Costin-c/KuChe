@@ -3,7 +3,10 @@
     <el-carousel trigger="click" height="316px">
       <el-carousel-item v-for="item in imgArr" :key="item.index">
         <!-- <h3 class="small">{{ item }}</h3> -->
-        <router-link to="">
+        <router-link
+          :to="{
+          }"
+        >
           <span class="small">{{ item.picTitile }}</span>
           <img :src="item.remark" alt="" />
         </router-link>
@@ -13,14 +16,14 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 export default {
   data() {
     return {
       imgArr: [],
     };
   },
-  beforeMount(){
+  beforeMount() {
     this.getImgList();
   },
   methods: {
@@ -33,7 +36,7 @@ export default {
           this.imgArr = res.data.rows;
         });
     },
-  }
+  },
 };
 </script>
 

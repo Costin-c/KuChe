@@ -1,29 +1,29 @@
 <template>
   <div id="base" class="">
     <!-- <div class="header">
-      <HeaderTab text="党员学习"></HeaderTab>
-
-      <HomeTabNew></HomeTabNew>
-
-      <div class="breadCrumb">
-        <div class="title">
-          <span>您当前所在的位置：</span>
+        <HeaderTab text="党务宣传"></HeaderTab>
+  
+        <HomeTabNew></HomeTabNew>
+  
+        <div class="breadCrumb">
+          <div class="title">
+            <span>您当前所在的位置：</span>
+          </div>
+          <div class="tool">
+            <el-breadcrumb separator="/">
+              <el-breadcrumb-item style="cu"
+                ><router-link to="/">首页</router-link></el-breadcrumb-item
+              >
+              <el-breadcrumb-item
+                ><router-link to="/dwxc"
+                  >党务宣传</router-link
+                ></el-breadcrumb-item
+              >
+              <el-breadcrumb-item>党务政策宣传</el-breadcrumb-item>
+            </el-breadcrumb>
+          </div>
         </div>
-        <div class="tool">
-          <el-breadcrumb separator="/">
-            <el-breadcrumb-item style="cu"
-              ><router-link to="/">首页</router-link></el-breadcrumb-item
-            >
-            <el-breadcrumb-item
-              ><router-link to="/dyxx"
-                >党员学习</router-link
-              ></el-breadcrumb-item
-            >
-            <el-breadcrumb-item>知识库</el-breadcrumb-item>
-          </el-breadcrumb>
-        </div>
-      </div>
-    </div> -->
+      </div> -->
 
     <div class="header">
       <div id="u3" class="ax_default _图片_"></div>
@@ -43,43 +43,31 @@
             <el-breadcrumb-item style="cu"
               ><router-link to="/">首页</router-link></el-breadcrumb-item
             >
-            <el-breadcrumb-item
-              ><router-link to="/dyxx"
-                >党员学习</router-link
+            <!-- <el-breadcrumb-item
+              ><router-link to="/job"
+                >工作情况</router-link
               ></el-breadcrumb-item
-            >
-            <el-breadcrumb-item>知识库</el-breadcrumb-item>
+            > -->
+            <el-breadcrumb-item>工作情况</el-breadcrumb-item>
           </el-breadcrumb>
         </div>
       </div>
       <div class="wrapper">
         <div class="list_left">
-          <h3>党员学习</h3>
+          <h3>工作情况</h3>
           <div class="imgcenter">
             <ul>
               <li>
-                <router-link to="/dyxx">三会一课</router-link>
+                <router-link to="/job">工作情况详情</router-link>
+              </li>
+
+              <!-- <li>
+                <router-link to="/dwxc/jsxc">纪律警示宣传</router-link>
               </li>
 
               <li>
-                <router-link to="/dyxx/szxx">素质学习</router-link>
-              </li>
-
-              <li>
-                <router-link to="/dyxx/dsxx">党史学习</router-link>
-              </li>
-
-              <li>
-                <router-link to="/dyxx/dwzs">党务知识</router-link>
-              </li>
-
-              <li>
-                <router-link to="/dyxx/zyjn">专业技能</router-link>
-              </li>
-
-              <li>
-                <router-link to="/dyxx/zsk">知识库</router-link>
-              </li>
+                <router-link to="/dwxc/hdzs">党组织活动展示</router-link>
+              </li> -->
             </ul>
           </div>
         </div>
@@ -101,16 +89,16 @@
         <div class="newsList">
           <div class="dyw981_act">
             <ul class="dyw981_text">
-              <li class="text" v-for="(items, index) in zskArr" :key="index">
+              <li class="text" v-for="(items, index) in jobList" :key="index">
                 <router-link
                   :to="{
-                    name: 'detail',
+                    name: 'homeDetail',
                     params: {
-                      dyxxId: items.dyxxId,
+                      gzdtId: items.gzdtId,
                     },
                   }"
                 >
-                  <span class="leftCon">{{ items.dyxxTitle }}</span>
+                  <span class="leftCon">{{ items.gzdtTitle }}</span>
                   <span class="rightCon">{{
                     items.createTime.slice(0, 10)
                   }}</span>
@@ -145,16 +133,18 @@
     </div>
   </div>
 </template>
-
-<script>
+  
+  <script>
+// import DetailPage from "../../components/DetailPage.vue";
 // import HeaderTab from "@/components/HeaderTab.vue";
-import FooterTab from "../../components/FooterTab.vue";
+import FooterTab from "@/components/FooterTab.vue";
 import HomeTabNew from "@/components/HomeTabNew.vue";
 import DjBg from "@/components/DjBg.vue";
 import axios from "axios";
 
 export default {
   components: {
+    // DetailPage,
     // HeaderTab,
     FooterTab,
     HomeTabNew,
@@ -162,20 +152,17 @@ export default {
   },
   data() {
     return {
-      newsArr: [],
-      zskArr: [],
+      jobList: [],
       total: 100,
       pageSize: 5,
       pageNum: 1,
       currentPage: 1,
       isAsc: "desc",
       orderByColumn: "createTime",
-      dyxxType: "知识库",
     };
   },
   beforeMount() {
-    this.getNewArr(
-      this.dyxxType,
+    this.getJobList(
       this.pageNum,
       this.pageSize,
       this.orderByColumn,
@@ -183,16 +170,17 @@ export default {
     );
   },
   methods: {
-    async getNewArr(dyxxType, pageNum, pageSize, orderByColumn, isAsc) {
-      await axios
+
+    async getJobList(pageNum, pageSize, orderByColumn, isAsc) {
+      const ins = axios.create();
+      await ins
         .get(
-          `http://www.tsllhf.cn:8078/news/webrequest/dyxxlist?dyxxType=${dyxxType}&pageNum=${pageNum}&pageSize=${pageSize}&orderByColumn=${orderByColumn}&isAsc=${isAsc}`
+          `http://www.tsllhf.cn:8078/news/webrequest/gzdtlist?pageNum=${pageNum}&pageSize=${pageSize}&orderByColumn=${orderByColumn}&isAsc=${isAsc}`
         )
         .then((res) => {
           this.total = res.data.total;
-          this.zskArr = res.data.rows;
-          // this.total = this.shArr.length;
-          console.log(this.total);
+          this.jobList = res.data.rows;
+          console.log(this.jobList);
         });
     },
 
@@ -200,26 +188,20 @@ export default {
     handleCurrentChange(val) {
       console.log(`当前页: ${val}`);
       this.currentPage = val;
-      this.getNewArr(
-        this.dyxxType,
-        val,
-        this.pageSize,
-        this.orderByColumn,
-        this.isAsc
-      );
-      console.log(this.zskArr);
+      this.getJobList(val, this.pageSize, this.orderByColumn, this.isAsc);
+      console.log(this.jobList);
     },
   },
 };
 </script>
-
-<style lang="less" scoped>
+  
+  <style lang="less" scoped>
 @import url("~@/styles/党员学习.css");
 
 .breadCrumb {
   // width: 100%;
   position: relative;
-  padding-left: 198px;
+  padding-left: 205px;
   padding-top: 15px;
   overflow: hidden;
   z-index: 99;
@@ -243,9 +225,9 @@ export default {
   }
   .newsList {
     width: 50%;
-    float: left;
-    /* position: relative; */
+    // position: relative;
     margin-left: 75px;
+    float: left;
     height: 700px;
     .dyw981_act {
       background: #fff;
@@ -326,6 +308,7 @@ export default {
       }
     }
   }
+
   .page {
     position: relative;
     left: 250px;
@@ -347,6 +330,7 @@ export default {
   position: relative;
   width: 100%;
 }
+
 #u3 {
   background-color: #c8161d;
   width: 100%;

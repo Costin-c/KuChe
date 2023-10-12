@@ -11,6 +11,7 @@
         <li><router-link to="/khtjbb">考核统计</router-link></li>
         <li><router-link to="/dzzzz">党组织职责</router-link></li>
         <li><router-link to="/dyxx">党员学习</router-link></li>
+        <li><router-link to="/job">工作情况</router-link></li>
       </ul>
     </div>
   </div>

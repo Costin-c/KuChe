@@ -39,7 +39,10 @@
         </div>
         <div class="jobList">
           <div class="jobHerader">
-            <img width="101%" src="@/assets/images/首页/job.png" alt="" />
+            <img width="115%" src="@/assets/images/首页/job.png" alt="" />
+            <div class="jobMore">
+              <router-link to="/job">更多&gt;</router-link>
+            </div>
           </div>
           <ul>
             <li v-for="(items, index) in jobList" :key="index">
@@ -73,14 +76,15 @@
       <div class="titleList">
         <!-- Unnamed (图片 ) -->
         <div id="u25" class="ax_default _图片_">
-          <img id="u25_img" class="img" src="@/assets/images/首页/u25.png" />
+          <img id="u25_img" class="img" src="@/assets/images/首页/u1.png" />
+          <div class="more">
+            <router-link to="/dyxx">更多&gt;</router-link>
+          </div>
           <div
             id="u25_text"
             class="text"
             style="display: none; visibility: hidden"
-          >
-            <p></p>
-          </div>
+          ></div>
         </div>
 
         <!-- Unnamed (图片 ) -->
@@ -190,13 +194,20 @@
         <div id="u34" class="ax_default _文本段落">
           <div id="u34_div" class=""></div>
           <div id="u34_text" class="text">
-            <p><span>“最美党员”风采</span></p>
+            <p>
+              <router-link style="color: #ffe820" to="/dyfc"
+                ><span>“最美党员”风采</span></router-link
+              >
+            </p>
           </div>
         </div>
 
         <!-- Unnamed (图片 ) -->
         <div id="u1" class="ax_default _图片_">
           <img id="u1_img" class="img" src="@/assets/images/首页/u1.png" />
+          <div class="more">
+            <router-link to="/dyfc">更多&gt;</router-link>
+          </div>
           <div
             id="u1_text"
             class="text"
@@ -230,17 +241,35 @@
       <div id="u37" class="ax_default _图片_">
         <div class="jobList">
           <ul>
-            <li v-for="items in arrList" :key="items.index">
-              <span class="left">{{ items.title }}</span>
-              <span class="right">{{ items.date }}</span>
+            <li v-for="items in fcArr1" :key="items.index">
+              <router-link
+                :to="{
+                  name: 'dyfcDetail',
+                  params: {
+                    dyId: items.dyId,
+                  },
+                }"
+              >
+                <span class="left">{{ items.dyfcTitle }}</span>
+                <span class="right">{{ items.createTime.slice(0, 10) }}</span>
+              </router-link>
             </li>
           </ul>
         </div>
         <div class="jobList">
           <ul>
-            <li v-for="items in arrList" :key="items.index">
-              <span class="left">{{ items.title }}</span>
-              <span class="right">{{ items.date }}</span>
+            <li v-for="items in fcArr2" :key="items.index">
+              <router-link
+                :to="{
+                  name: 'dyfcDetail',
+                  params: {
+                    dyId: items.dyId,
+                  },
+                }"
+              >
+                <span class="left">{{ items.dyfcTitle }}</span>
+                <span class="right">{{ items.createTime.slice(0, 10) }}</span>
+              </router-link>
             </li>
           </ul>
         </div>
@@ -263,12 +292,19 @@
         <div id="u43" class="ax_default _文本段落">
           <div id="u43_div" class=""></div>
           <div id="u43_text" class="text">
-            <p><span>“党组织”基本结构</span></p>
+            <p>
+              <router-link style="color: #ffe820" to="/dzzjg"
+                ><span>“党组织”基本结构</span></router-link
+              >
+            </p>
           </div>
         </div>
         <!-- Unnamed (图片 ) -->
         <div id="u38" class="ax_default _图片_">
           <img id="u38_img" class="img" src="@/assets/images/首页/u1.png" />
+          <div class="more">
+            <router-link to="/dwxc">更多&gt;</router-link>
+          </div>
           <div
             id="u38_text"
             class="text"
@@ -405,6 +441,9 @@ export default {
       dwxcArr: [],
       dwArr: [],
       jlArr: [],
+      fcArrSum: [],
+      fcArr1: [],
+      fcArr2: [],
     };
   },
   beforeMount() {
@@ -412,6 +451,7 @@ export default {
     this.getJobList();
     this.getLearnList();
     this.getDwxcList();
+    this.getFcList();
   },
   methods: {
     getTime() {
@@ -434,7 +474,9 @@ export default {
     getJobList() {
       const ins = axios.create();
       ins
-        .get("http://www.tsllhf.cn:8078/news/webrequest/gzdtlist")
+        .get(
+          "http://www.tsllhf.cn:8078/news/webrequest/gzdtlist?orderByColumn=createTime&isAsc=desc"
+        )
         .then((res) => {
           // console.log(res.data.rows);
           this.jobList = res.data.rows;
@@ -443,7 +485,9 @@ export default {
     async getLearnList() {
       const ins = axios.create();
       await ins
-        .get("http://www.tsllhf.cn:8078/news/webrequest/dyxxlist")
+        .get(
+          "http://www.tsllhf.cn:8078/news/webrequest/dyxxlist?orderByColumn=createTime&isAsc=desc"
+        )
         .then((res) => {
           this.learnArr = res.data.rows;
           console.log(this.learnArr);
@@ -472,7 +516,9 @@ export default {
     async getDwxcList() {
       const ins = axios.create();
       await ins
-        .get("http://www.tsllhf.cn:8078/news/webrequest/dwxclist")
+        .get(
+          "http://www.tsllhf.cn:8078/news/webrequest/dwxclist?orderByColumn=createTime&isAsc=desc"
+        )
         .then((res) => {
           this.dwxcArr = res.data.rows;
           console.log(this.dwxcArr);
@@ -491,12 +537,32 @@ export default {
     },
     addjlArr() {
       for (let i = 0; i < this.dwxcArr.length; i++) {
-        if (this.dwxcArr[i].dwxcType === "纪律警示宣传") {
+        if (this.dwxcArr[i].dwxcType === "党组织活动展示") {
           this.jlArr.push(this.dwxcArr[i]);
           // console.log(this.learnArr[i]);
         }
       }
       console.log(this.jlArr);
+    },
+    async getFcList() {
+      const ins = axios.create();
+      await ins
+        .get(
+          "http://www.tsllhf.cn:8078/news/webrequest/dyfclist?orderByColumn=createTime&isAsc=desc"
+        )
+        .then((res) => {
+          this.fcArrSum = res.data.rows;
+          console.log(this.fcArrSum);
+        });
+      // 分别放入列表中
+      this.fcArrSum.forEach((item, index) => {
+        // 前一半
+        if (index < this.fcArrSum.length / 2) this.fcArr1.push(item);
+        // 后一半
+        else this.fcArr2.push(item);
+      });
+      console.log(this.fcArr1);
+      console.log(this.fcArr2);
     },
   },
 };
@@ -523,9 +589,6 @@ export default {
       display: flex;
       justify-content: space-between;
       list-style: circle;
-      // a, .left, .right{
-      //   display: inline-block;
-      // }
       a {
         display: flex;
       }
@@ -539,7 +602,8 @@ export default {
     }
   }
   .jobHerader {
-    margin-bottom: 16px;
+    // margin-bottom: 16px;
+    overflow: hidden;
   }
 }
 .top {
@@ -549,11 +613,11 @@ export default {
 }
 .breadCrumb {
   position: relative;
-  left: 200px;
+  padding-left: 205px;
   padding-top: 15px;
   overflow: hidden;
   z-index: 99;
-  width: 1100px;
+  width: 1109px;
   .title {
     float: left;
   }
@@ -575,5 +639,18 @@ export default {
     position: relative;
     top: -644px;
   }
+}
+.jobMore {
+  // display: inline-block ;
+  float: right;
+  position: relative;
+  top: -36px;
+  right: 15px;
+  overflow: hidden;
+}
+.more {
+  margin-top: 7px;
+  margin-right: 15px;
+  z-index: 66;
 }
 </style>

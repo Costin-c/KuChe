@@ -1,7 +1,7 @@
 <template>
   <div id="base" class="">
     <!-- <div class="header">
-      <HeaderTab text="党组织职责"></HeaderTab>
+      <HeaderTab text="关于我们"></HeaderTab>
 
       <HomeTabNew></HomeTabNew>
     </div> -->
@@ -25,15 +25,15 @@
               ><router-link to="/">首页</router-link></el-breadcrumb-item
             >
             <el-breadcrumb-item
-              ><router-link to="/dzzzz"
-                >党组织职责</router-link
+              ><router-link to="/about"
+                >关于我们</router-link
               ></el-breadcrumb-item
             >
           </el-breadcrumb>
         </div>
       </div>
       <div class="bigTitle">
-        <h1>{{ this.zzTitle }}</h1>
+        <h1>关于我们</h1>
       </div>
 
       <!-- Unnamed (线段) -->
@@ -48,36 +48,10 @@
       <!-- Unnamed (矩形) -->
       <div id="u84" class="ax_default _一级标题">
         <div id="u84_text" class="text">
-          <div  id="u84_height" v-html="zzContent"></div>
-
-          <div class="list">
-            <!-- Unnamed (线段) -->
-            <!-- <div id="u82" class="ax_default line">
-              <img
-                id="u82_img"
-                class="img"
-                src="@/assets/images/党组织职责/u81.svg"
-              />
-            </div> -->
-
-            <!-- Unnamed (矩形) -->
-            <!-- <div id="u80" class="ax_default _一级标题">
-              <div id="u80_text" class="text">
-                <p style="margin-top: 30px">
-                  <span>时间：{{ this.publicDate }}</span>
-                  <span>发布人：{{ this.publicName }}</span>
-                </p>
-              </div>
-            </div> -->
-
-            <!-- Unnamed (矩形) -->
-            <!-- <div id="u83" class="ax_default _一级标题">
-              <div id="u83_text" class="text">
-                <p>
-                  <span>发布人：{{ this.dyInfo.createBy }}</span>
-                </p>
-              </div>
-            </div> -->
+          <div id="u84_height">
+            <p style="line-height: 40px">
+              库车惠源农村供水有限公司党支部成立于2018年5月，隶属库车水务投资集团有限公司党委，现有党员15名，其中：正式党员13名、预备党员2名、女性党员7名、少数民族党员13名、在职党员15名。党支部高标准严要求，相继开展了“两学一做”学习教育、“不忘初心、牢记使命”主题教育，党史学习教育等党的主题活动，教育党员职工坚定理想信念，不断改进作风，激励担当作为，永葆政治本色，坚守为库车市农村居民供好水服好务的初心使命。作为民生保障企业，库车惠源农村供水有限公司致力于围绕业务抓党建，抓好党建促工作，高质量推进“党建+业务”的融合发展，走出一条“党建+业务+互联网”特色党建道路。下一步，公司将深化“智慧水务”建设，完善供水“一张网”，推进城乡供水“一体化”，提升城乡供水安全保障能力，逐步形成智能化运行、科学化调度、精准化服务，向智慧化供水企业迈进。
+            </p>
           </div>
         </div>
       </div>
@@ -95,10 +69,10 @@
     </div>
   </div>
 </template>
-
-<script>
+  
+  <script>
 // import HeaderTab from "@/components/HeaderTab.vue";
-import FooterTab from "../../components/FooterTab.vue";
+import FooterTab from "@/components/FooterTab.vue";
 import HomeTabNew from "@/components/HomeTabNew.vue";
 import DjBg from "@/components/DjBg.vue";
 import axios from "axios";
@@ -146,13 +120,12 @@ export default {
       const footer = document.getElementsByClassName("footer")[0];
       footer.style.top =
         document.getElementById("u84_height").clientHeight + 300 + "px";
-      console.log("执行了");
-      },
+    },
   },
 };
 </script>
-
-<style lang="less" scoped>
+  
+  <style lang="less" scoped>
 @import url("~@/styles/党组织职责.css");
 
 .top {
@@ -160,9 +133,7 @@ export default {
 }
 
 .breadCrumb {
-  // width: 100%;
   position: relative;
-  // padding-left: 290px;
   padding-top: 15px;
   overflow: hidden;
   z-index: 99;
@@ -181,13 +152,13 @@ export default {
 .footer {
   position: relative;
   width: 100%;
-  // top: 500px;
 }
 .content {
   position: relative;
   width: 1109px;
   margin: 0 auto;
 }
+
 #u3 {
   background-color: #c8161d;
   width: 100%;

@@ -1,7 +1,7 @@
 <template>
   <div id="base" class="">
-    <div class="header">
-      <HeaderTab text="党员学习"></HeaderTab>
+    <!-- <div class="header">
+      <HeaderTab text="党务宣传"></HeaderTab>
 
       <HomeTabNew></HomeTabNew>
 
@@ -23,9 +23,35 @@
           </el-breadcrumb>
         </div>
       </div>
+    </div> -->
+
+    <div class="header">
+      <div id="u3" class="ax_default _图片_"></div>
+
+      <div class="tab">
+        <HomeTabNew></HomeTabNew>
+      </div>
     </div>
 
     <div class="leaCon">
+      <div class="breadCrumb">
+        <div class="title">
+          <span>您当前所在的位置：</span>
+        </div>
+        <div class="tool">
+          <el-breadcrumb separator="/">
+            <el-breadcrumb-item style="cu"
+              ><router-link to="/">首页</router-link></el-breadcrumb-item
+            >
+            <el-breadcrumb-item
+              ><router-link to="/dwxc"
+                >党务宣传</router-link
+              ></el-breadcrumb-item
+            >
+            <el-breadcrumb-item>党务政策宣传</el-breadcrumb-item>
+          </el-breadcrumb>
+        </div>
+      </div>
       <div class="wrapper">
         <div class="list_left">
           <h3>党务宣传</h3>
@@ -73,12 +99,25 @@
                   }"
                 >
                   <span class="leftCon">{{ items.dwxcTitle }}</span>
-                  <span class="rightCon">{{ items.createTime.slice(0, 10) }}</span>
+                  <span class="rightCon">{{
+                    items.createTime.slice(0, 10)
+                  }}</span>
                 </router-link>
               </li>
             </ul>
           </div>
         </div>
+      </div>
+      <div class="page">
+        <el-pagination
+          @current-change="handleCurrentChange"
+          :page-size="pageSize"
+          :current-page.sync="currentPage"
+          :pager-count="11"
+          layout="prev, pager, next, jumper"
+          :total="total"
+        >
+        </el-pagination>
       </div>
     </div>
 
@@ -97,7 +136,7 @@
 
 <script>
 // import DetailPage from "../../components/DetailPage.vue";
-import HeaderTab from "@/components/HeaderTab.vue";
+// import HeaderTab from "@/components/HeaderTab.vue";
 import FooterTab from "../../components/FooterTab.vue";
 import HomeTabNew from "@/components/HomeTabNew.vue";
 import DjBg from "@/components/DjBg.vue";
@@ -106,37 +145,56 @@ import axios from "axios";
 export default {
   components: {
     // DetailPage,
-    HeaderTab,
+    // HeaderTab,
     FooterTab,
     HomeTabNew,
     DjBg,
   },
   data() {
     return {
-      newsArr: [],
-      // createTime: "",
-      dwzcArr: []
+      dwzcArr: [],
+      total: 100,
+      pageSize: 5,
+      pageNum: 1,
+      currentPage: 1,
+      isAsc: "desc",
+      orderByColumn: "createTime",
+      dwxcType: "党务政策宣传",
     };
   },
   beforeMount() {
-    this.getNewArr();
+    this.getNewArr(
+      this.dwxcType,
+      this.pageNum,
+      this.pageSize,
+      this.orderByColumn,
+      this.isAsc
+    );
   },
   methods: {
-    async getNewArr() {
+    async getNewArr(dwxcType, pageNum, pageSize, orderByColumn, isAsc) {
       await axios
-        .get("http://www.tsllhf.cn:8078/news/webrequest/dwxclist")
+        .get(
+          `http://www.tsllhf.cn:8078/news/webrequest/dwxclist?dwxcType=${dwxcType}&pageNum=${pageNum}&pageSize=${pageSize}&orderByColumn=${orderByColumn}&isAsc=${isAsc}`
+        )
         .then((res) => {
-          this.newsArr = res.data.rows;
-          // console.log(this.newsArr);
+          this.total = res.data.total;
+          this.dwzcArr = res.data.rows;
+          console.log(this.total);
         });
-        this.addArr();
     },
-    addArr() {
-      for (let i = 0; i < this.newsArr.length; i++) {
-        if (this.newsArr[i].dwxcType === "党务政策宣传") {
-          this.dwzcArr.push(this.newsArr[i]);
-        }
-      }
+
+    //当前页改变时触发 跳转其他页
+    handleCurrentChange(val) {
+      console.log(`当前页: ${val}`);
+      this.currentPage = val;
+      this.getNewArr(
+        this.dwxcType,
+        val,
+        this.pageSize,
+        this.orderByColumn,
+        this.isAsc
+      );
       console.log(this.dwzcArr);
     },
   },
@@ -146,16 +204,10 @@ export default {
 <style lang="less" scoped>
 @import url("~@/styles/党员学习.css");
 
-// .top {
-//   position: absolute;
-//   width: 100%;
-//   top: 1248px;
-// }
-
 .breadCrumb {
   // width: 100%;
   position: relative;
-  padding-left: 198px;
+  padding-left: 205px;
   padding-top: 15px;
   overflow: hidden;
   z-index: 99;
@@ -182,7 +234,7 @@ export default {
     // position: relative;
     margin-left: 75px;
     float: left;
-    height: 1000px;
+    height: 700px;
     .dyw981_act {
       background: #fff;
       // padding: 10px 0 40px;
@@ -262,6 +314,11 @@ export default {
       }
     }
   }
+
+  .page {
+    position: relative;
+    left: 250px;
+  }
 }
 
 .list_left ul a:hover {
@@ -278,5 +335,16 @@ export default {
 .footer {
   position: relative;
   width: 100%;
+}
+
+#u3 {
+  background-color: #c8161d;
+  width: 100%;
+  height: 300px;
+  display: flex;
+  background-image: url(~@/assets/images/首页/head.png);
+  background-size: 100%;
+  align-items: flex-end;
+  justify-content: flex-end;
 }
 </style>

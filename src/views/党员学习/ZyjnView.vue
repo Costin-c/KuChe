@@ -1,6 +1,6 @@
 <template>
   <div id="base" class="">
-    <div class="header">
+    <!-- <div class="header">
       <HeaderTab text="党员学习"></HeaderTab>
 
       <HomeTabNew></HomeTabNew>
@@ -23,9 +23,35 @@
           </el-breadcrumb>
         </div>
       </div>
+    </div> -->
+
+    <div class="header">
+      <div id="u3" class="ax_default _图片_"></div>
+
+      <div class="tab">
+        <HomeTabNew></HomeTabNew>
+      </div>
     </div>
 
     <div class="leaCon">
+      <div class="breadCrumb">
+        <div class="title">
+          <span>您当前所在的位置：</span>
+        </div>
+        <div class="tool">
+          <el-breadcrumb separator="/">
+            <el-breadcrumb-item style="cu"
+              ><router-link to="/">首页</router-link></el-breadcrumb-item
+            >
+            <el-breadcrumb-item
+              ><router-link to="/dyxx"
+                >党员学习</router-link
+              ></el-breadcrumb-item
+            >
+            <el-breadcrumb-item>专业技能</el-breadcrumb-item>
+          </el-breadcrumb>
+        </div>
+      </div>
       <div class="wrapper">
         <div class="list_left">
           <h3>党员学习</h3>
@@ -94,6 +120,17 @@
           </div>
         </div>
       </div>
+      <div class="page">
+        <el-pagination
+          @current-change="handleCurrentChange"
+          :page-size="pageSize"
+          :current-page.sync="currentPage"
+          :pager-count="11"
+          layout="prev, pager, next, jumper"
+          :total="total"
+        >
+        </el-pagination>
+      </div>
     </div>
 
     <div class="footer">
@@ -110,7 +147,7 @@
 </template>
 
 <script>
-import HeaderTab from "@/components/HeaderTab.vue";
+// import HeaderTab from "@/components/HeaderTab.vue";
 import FooterTab from "../../components/FooterTab.vue";
 import HomeTabNew from "@/components/HomeTabNew.vue";
 import DjBg from "@/components/DjBg.vue";
@@ -118,36 +155,57 @@ import axios from "axios";
 
 export default {
   components: {
-    HeaderTab,
+    // HeaderTab,
     FooterTab,
     HomeTabNew,
     DjBg,
   },
   data() {
     return {
-      newsArr: [],
-      zyArr: []
+      zyArr: [],
+      total: 100,
+      pageSize: 5,
+      pageNum: 1,
+      currentPage: 1,
+      isAsc: "desc",
+      orderByColumn: "createTime",
+      dyxxType: "专业技能",
     };
   },
   beforeMount() {
-    this.getNewArr();
+    this.getNewArr(
+      this.dyxxType,
+      this.pageNum,
+      this.pageSize,
+      this.orderByColumn,
+      this.isAsc
+    );
   },
   methods: {
-    async getNewArr() {
+    async getNewArr(dyxxType, pageNum, pageSize, orderByColumn, isAsc) {
       await axios
-        .get("http://www.tsllhf.cn:8078/news/webrequest/dyxxlist")
+        .get(
+          `http://www.tsllhf.cn:8078/news/webrequest/dyxxlist?dyxxType=${dyxxType}&pageNum=${pageNum}&pageSize=${pageSize}&orderByColumn=${orderByColumn}&isAsc=${isAsc}`
+        )
         .then((res) => {
-          this.newsArr = res.data.rows;
-          // console.log(this.newsArr);
+          this.total = res.data.total;
+          this.zyArr = res.data.rows;
+          // this.total = this.shArr.length;
+          console.log(this.total);
         });
-        this.addArr();
     },
-    addArr() {
-      for (let i = 0; i < this.newsArr.length; i++) {
-        if (this.newsArr[i].dyxxType === "专业技能") {
-          this.zyArr.push(this.newsArr[i]);
-        }
-      }
+
+    //当前页改变时触发 跳转其他页
+    handleCurrentChange(val) {
+      console.log(`当前页: ${val}`);
+      this.currentPage = val;
+      this.getNewArr(
+        this.dyxxType,
+        val,
+        this.pageSize,
+        this.orderByColumn,
+        this.isAsc
+      );
       console.log(this.zyArr);
     },
   },
@@ -156,7 +214,6 @@ export default {
 
 <style lang="less" scoped>
 @import url("~@/styles/党员学习.css");
-
 
 .breadCrumb {
   // width: 100%;
@@ -188,7 +245,7 @@ export default {
     float: left;
     /* position: relative; */
     margin-left: 75px;
-    height: 1000px;
+    height: 700px;
     .dyw981_act {
       background: #fff;
       // padding: 10px 0 40px;
@@ -227,15 +284,6 @@ export default {
       float: right;
     }
 
-    // .dyw981_text .text a {
-    //   float: left;
-    // }
-    // .dyw981_text .text span {
-    //   font: 14px "微软雅黑";
-    //   color: #b1b1b1;
-    //   line-height: 32px;
-    //   float: right;
-    // }
   }
 
   .list_left {
@@ -268,6 +316,10 @@ export default {
       }
     }
   }
+  .page {
+    position: relative;
+    left: 250px;
+  }
 }
 
 .list_left ul a:hover {
@@ -284,5 +336,16 @@ export default {
 .footer {
   position: relative;
   width: 100%;
+}
+
+#u3 {
+  background-color: #c8161d;
+  width: 100%;
+  height: 300px;
+  display: flex;
+  background-image: url(~@/assets/images/首页/head.png);
+  background-size: 100%;
+  align-items: flex-end;
+  justify-content: flex-end;
 }
 </style>

@@ -1,11 +1,19 @@
 <template>
   <div id="base">
-    <div class="header">
-      <!-- 页头 -->
+    <!-- <div class="header">
       <HeaderTab text="学籍统计"></HeaderTab>
 
       <HomeTabNew></HomeTabNew>
+    </div> -->
 
+    <div class="header">
+      <div id="u3" class="ax_default _图片_"></div>
+
+      <div class="tab">
+        <HomeTabNew></HomeTabNew>
+      </div>
+    </div>
+    <div class="xjCon">
       <div class="breadCrumb">
         <div class="title">
           <span>您当前所在的位置：</span>
@@ -23,9 +31,6 @@
           </el-breadcrumb>
         </div>
       </div>
-    </div>
-
-    <div class="xjCon">
       <!-- 表格区域 -->
       <div id="u88" class="ax_default box_1">
         <div class="tableCon">
@@ -52,7 +57,7 @@
 </template>
 
 <script>
-import HeaderTab from "@/components/HeaderTab.vue";
+// import HeaderTab from "@/components/HeaderTab.vue";
 import FooterTab from "@/components/FooterTab.vue";
 import TableTool from "@/components/TableTool.vue";
 // import PageNation from "@/components/PageNation.vue";
@@ -61,7 +66,7 @@ import DjBg from "@/components/DjBg.vue";
 
 export default {
   components: {
-    HeaderTab,
+    // HeaderTab,
     FooterTab,
     TableTool,
     // PageNation,
@@ -85,7 +90,7 @@ export default {
 .breadCrumb {
   // width: 100%;
   position: relative;
-  padding-left: 233px;
+  padding-left: 28px;
   padding-top: 15px;
   overflow: hidden;
   z-index: 99;
@@ -97,9 +102,26 @@ export default {
   }
 }
 
-.footer{
+.footer {
   position: relative;
   width: 100%;
   top: 950px;
+}
+
+.xjCon {
+  position: relative;
+  width: 1109px;
+  margin: 0 auto;
+}
+
+#u3 {
+  background-color: #c8161d;
+  width: 100%;
+  height: 300px;
+  display: flex;
+  background-image: url(~@/assets/images/首页/head.png);
+  background-size: 100%;
+  align-items: flex-end;
+  justify-content: flex-end;
 }
 </style>

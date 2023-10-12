@@ -39,6 +39,9 @@
       <el-menu-item index="5">
         <router-link to="/dyxx">党员学习</router-link>
       </el-menu-item>
+      <el-menu-item index="6">
+        <router-link to="/job">工作情况</router-link>
+      </el-menu-item>
     </el-menu>
   </div>
 </template>

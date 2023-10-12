@@ -1,8 +1,16 @@
 <template>
   <div id="base" class="">
-    <div class="header">
+    <!-- <div class="header">
       <HeaderTab text="考核统计"></HeaderTab>
       <HomeTabNew></HomeTabNew>
+    </div> -->
+
+    <div class="header">
+      <div id="u3" class="ax_default _图片_"></div>
+
+      <div class="tab">
+        <HomeTabNew></HomeTabNew>
+      </div>
     </div>
 
     <div class="midCon">
@@ -166,7 +174,7 @@
 </template>
 
 <script>
-import HeaderTab from "@/components/HeaderTab.vue";
+// import HeaderTab from "@/components/HeaderTab.vue";
 import FooterTab from "../../components/FooterTab.vue";
 import HomeTabNew from "@/components/HomeTabNew.vue";
 import DjBg from "@/components/DjBg.vue";
@@ -174,7 +182,7 @@ import axios from "axios";
 
 export default {
   components: {
-    HeaderTab,
+    // HeaderTab,
     FooterTab,
     HomeTabNew,
     DjBg,
@@ -203,7 +211,6 @@ export default {
   },
   beforeMount() {
     this.getDyData();
-    this.getKhList();
   },
   methods: {
     async getDyData() {
@@ -213,7 +220,14 @@ export default {
           this.tableData = res.data.rows;
           console.log(this.tableData);
         });
+      this.tableData.forEach((item) => {
+        this.khNameData.push(item.dyName);
+      });
+      this.tableData.forEach((item) => {
+        this.khCount.push(item.khrwJhjsFinished);
+      });
       this.getList();
+      this.drawChart();
     },
     onSubmit() {
       if (this.formInline.date && this.formInline.xxlb != "") {
@@ -281,22 +295,6 @@ export default {
       myChart.setOption(option);
       // console.log(this.finish);
     },
-    async getKhList() {
-      await axios
-        .get("http://www.tsllhf.cn:8078/news/webrequest/dykhlist")
-        .then((res) => {
-          this.khData = res.data.rows;
-          console.log(this.khData);
-        });
-
-      this.khData.forEach((item) => {
-        this.khNameData.push(item.dyName);
-      });
-      this.tableData.forEach((item) => {
-        this.khCount.push(item.khrwJhjsFinished);
-      });
-      this.drawChart();
-    },
     getCount(val) {
       if (val === "jhjs") {
         this.finish = "khrwJhjsFinished";
@@ -344,7 +342,7 @@ export default {
   // width: 100%;
   position: relative;
   padding-left: 204px;
-  padding-top: 24px;
+  padding-top: 15px;
   overflow: hidden;
   z-index: 99;
   .title {
@@ -400,5 +398,16 @@ export default {
 .el-form--inline .el-form-item {
   flex: 1 0 40%;
   align-items: center;
+}
+
+#u3 {
+  background-color: #c8161d;
+  width: 100%;
+  height: 300px;
+  display: flex;
+  background-image: url(~@/assets/images/首页/head.png);
+  background-size: 100%;
+  align-items: flex-end;
+  justify-content: flex-end;
 }
 </style>

@@ -19,6 +19,11 @@
                 >党员风采展示</router-link
               ></el-breadcrumb-item
             >
+            <el-breadcrumb-item
+              ><router-link to="/dyfc">{{
+                this.$route.params.dyId
+              }}</router-link></el-breadcrumb-item
+            >
           </el-breadcrumb>
         </div>
       </div>
@@ -46,6 +51,11 @@
               ><router-link to="/dyfc"
                 >党员风采展示</router-link
               ></el-breadcrumb-item
+            >
+            <el-breadcrumb-item
+              ><router-link to="/dyfc">{{
+                this.$route.params.dyId
+              }}</router-link></el-breadcrumb-item
             >
           </el-breadcrumb>
         </div>
@@ -89,6 +99,7 @@
       </div>
 
       <div class="list_right" v-html="dyfcContent"></div>
+
     </div>
 
     <div class="footer">
@@ -122,13 +133,18 @@ export default {
     return {
       nameArr: [],
       dyfcInfo: [],
-      dyId: "刘军",
+      dyId: "",
       dyfcContent: "",
     };
   },
   beforeMount() {
     this.getNameList();
+
+    this.dyId = this.$route.params.dyId;
+    
+    console.log(this.$route.params);
     this.getNameById(this.dyId);
+    // this.getNameById(this.dyid);
   },
   methods: {
     async getNameList() {
@@ -136,22 +152,25 @@ export default {
       ins
         .get("http://www.tsllhf.cn:8078/news/webrequest/dyfclist")
         .then((res) => {
-          console.log(res.data.rows);
+          // console.log(res.data.rows);
           this.nameArr = res.data.rows;
         });
     },
-    async getNameById(dyid) {
+    async getNameById(dyId) {
       const ins = axios.create();
       ins
-        .get(`http://www.tsllhf.cn:8078/news/webrequest/dyfclist?dyId=${dyid}`)
+        .get(`http://www.tsllhf.cn:8078/news/webrequest/dyfclist?dyId=${dyId}`)
         .then((res) => {
-          console.log(res.data.data);
           this.dyfcInfo = res.data.rows;
-          // this.nameArr = res.data.rows;
           this.dyfcContent = this.dyfcInfo[0].dyfcContent;
+          // console.log(this.dyfcContent);
         });
     },
-    changeContent() {},
+    changeContent() {
+      this.getNameById(this.$route.params.dyId);
+      this.dyfcContent =  this.dyfcInfo[0].dyfc_content
+      // console.log("执行了");
+    },
   },
 };
 </script>
@@ -165,7 +184,7 @@ export default {
 }
 .breadCrumb {
   position: relative;
-  padding-left: 205px;
+  padding-left: 198px;
   padding-top: 15px;
   overflow: hidden;
   z-index: 99;
@@ -193,12 +212,21 @@ export default {
   border: 1px solid #e2e2e2;
   background: url(~@/assets/images/党员学习/icon2.jpg) no-repeat 35px -59px;
 }
+.list_left ul a:hover {
+  border: 1px solid #e81b00;
+  color: #fff;
+  background: #e81b00 url(~@/assets/images/党员学习/icon2.jpg) no-repeat 35px -100px;
+}
+.list_left ul li a.focus {
+  background: #e81b00;
+  border: 1px solid #e81b00;
+  color: #fff;
+}
+
 .fcCon {
   position: relative;
-  // width: 1109px;
-  // margin: 0 auto;
   width: 100%;
-  // overflow: hidden;
+  overflow: hidden;
   // height: 800px;
   .list_left {
     width: 254px;
@@ -213,7 +241,7 @@ export default {
       padding-bottom: 5px;
     }
   }
-  .list_right {
+  .list_right{
     width: 50%;
     float: left;
     margin-left: 120px;
@@ -223,16 +251,6 @@ export default {
   }
 }
 
-.list_left ul a:hover {
-  border: 1px solid #e81b00;
-  color: #fff;
-  background: #e81b00 url(~@/assets/images/党员学习/icon2.jpg) no-repeat 35px -100px;
-}
-.list_left ul li a.focus {
-  background: #e81b00;
-  border: 1px solid #e81b00;
-  color: #fff;
-}
 #u3 {
   background-color: #c8161d;
   width: 100%;

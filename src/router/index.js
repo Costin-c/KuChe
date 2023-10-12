@@ -81,8 +81,8 @@ const routes = [
   },
   {
     path: '/dyfc/:dyId',
-    name: 'dyfc',
-    component: () => import('../views/组织结构/DyfcView.vue')
+    name: 'dyfcDetail',
+    component: () => import('../views/组织结构/DyfcDetail.vue')
   },
   {
     path: '/dzzzz',
@@ -98,6 +98,16 @@ const routes = [
     path: '/khtjbb',
     name: 'khtjbb',
     component: () => import('../views/党组织考核管理/KhtjbbView.vue')
+  },
+  {
+    path: '/about',
+    name: 'about',
+    component: () => import('../views/AboutView.vue')
+  },
+  {
+    path: '/job',
+    name: 'job',
+    component: () => import('../views/JobView.vue')
   },
 ]
 

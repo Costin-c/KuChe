@@ -134,10 +134,16 @@
   margin-bottom: 20px;
   line-height: 30px;
 }
+#u84 p img{
+  width: 100%;
+  text-align: center;
+  display:block;
+  margin-bottom: 20px;
+}
 #u84 .text {
   position: absolute;
   align-self: flex-start;
-  text-align: left;
+  text-align: justify;
   padding: 0px 0px 0px 0px;
   box-sizing: border-box;
   width: 100%;
